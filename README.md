@@ -25,11 +25,11 @@ would allow for a wide range of flexibility/**creative liberty in rendering the 
 
 ## User Stories
 
-- As a user, I want to be able to be able to add fruit to the basket.
-- As a user, I want to be able to view my number of lives as I lose/gain them.
+- As a user, I want the game to end after I lose 3 lives.
+- As a user, I want to be able to view my number of lives as I lose them.
 - As a user, I want to be able to view my score at the end of the game.
-- As a user, I want it visible that as I collect certain benchmark numbers of fruits, the pile of fruits in my basket
-increase in size.
+- As a user, I want to be able to be able to add fruit to the basket.
+- As a user, I want to be able to use the left and right arrow keys to move.
 
 
 
