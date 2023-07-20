@@ -132,14 +132,14 @@ public class TerminalGame {
     //EFFECTS: renders the player
     private void drawBasket() {
         Basket basket = game.getBasket();
-        drawPosition(basket.getX(), basket.getY(), TextColor.ANSI.BLUE, '█', true);
+        drawPosition(basket.getX(), basket.getY(), TextColor.ANSI.BLUE, 'U', true);
     }
 
     //EFFECTS: renders each fruit in a list of fruit
     private void drawFruit() {
         List<Fruit> fruit = game.getFruit();
         for (Fruit currentFruit : fruit) {
-            drawPosition(currentFruit.getX(), currentFruit.getY(), TextColor.ANSI.GREEN, '⬤', false);
+            drawPosition(currentFruit.getX(), currentFruit.getY(), TextColor.ANSI.GREEN, 'f', false);
         }
 
     }
@@ -148,7 +148,7 @@ public class TerminalGame {
     private void drawEnemies() {
         List<Enemy> enemy = game.getEnemies();
         for (Enemy currentEnemy : enemy) {
-            drawPosition(currentEnemy.getX(), currentEnemy.getY(), TextColor.ANSI.RED, '⬤', false);
+            drawPosition(currentEnemy.getX(), currentEnemy.getY(), TextColor.ANSI.RED, 'e', false);
         }
     }
 
