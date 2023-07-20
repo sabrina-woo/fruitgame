@@ -37,8 +37,8 @@ public class Game {
 
     //EFFECTS: updates the fruit and enemies
     public void tick() {
-        moveFruit(fallingFruit);
-        moveEnemies(fallingEnemies);
+        moveFruit(this.fallingFruit);
+        moveEnemies(this.fallingEnemies);
         createFruit();
         createEnemies();
         handleEnemies();
