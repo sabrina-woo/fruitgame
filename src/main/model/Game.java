@@ -35,6 +35,7 @@ public class Game {
         this.ended = false;
     }
 
+    //MODIFIES: this
     //EFFECTS: updates the fruit and enemies
     public void tick() {
         moveFruit(this.fallingFruit);
@@ -119,7 +120,6 @@ public class Game {
         }
     }
 
-    //MODIFIES: this
     //EFFECTS: gets the new position of every fruit in the list of fruit on tick
     public List<Fruit> moveFruit(List<Fruit> fruit) {
         List<Fruit> newFruitPositions = new ArrayList<>();
@@ -131,7 +131,6 @@ public class Game {
         return newFruitPositions;
     }
 
-    //MODIFIES: this
     //EFFECTS: gets the new position of every enemy in the list of enemies on tick
     public List<Enemy> moveEnemies(List<Enemy> enemies) {
         List<Enemy> newEnemyPositions = new ArrayList<>();

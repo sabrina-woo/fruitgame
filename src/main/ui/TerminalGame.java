@@ -29,6 +29,7 @@ public class TerminalGame {
     private Screen screen;
     private WindowBasedTextGUI gameGUI;
 
+    //MODIFIES: this
     //EFFECTS: sets up the window where the game is played and starts the game
     public void start() throws IOException, InterruptedException {
         screen = new DefaultTerminalFactory().createScreen();
@@ -52,6 +53,7 @@ public class TerminalGame {
         System.exit(0);
     }
 
+    //MODIFIES: this
     //EFFECTS: on each tick, calls the render function to render updated positions and takes new user input
     private void tick() throws IOException {
         handleUserInput();
@@ -65,6 +67,7 @@ public class TerminalGame {
     }
 
     //MODIFIES: this
+    //MODIFIES: game
     //EFFECTS: takes user arrow key input and moves the user's position depending on the input
     private void handleUserInput() throws IOException {
         KeyStroke stroke = screen.pollInput();
