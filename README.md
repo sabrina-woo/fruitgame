@@ -4,10 +4,8 @@
 
 The application I will create is a simple game that consists of a **single playable character** that can move left 
 and right across the screen. The user's goal is to **collect falling fruit** that moves vertically down the 
-screen, and **avoid harmful falling objects** falling vertically down the screen. Upon **hitting three harmful objects, 
-the game will end** and a score will be given to the user based on the number of fruits collected by the user. The 
-longer the player survives in the game, the more challenging the game will become (eg. more frequent harmful falling 
-objects).
+screen, and **avoid harmful falling objects** falling vertically down the screen. Upon **hitting a harmful object, 
+the game will end** and a score will be given to the user based on the number of fruits collected by the user.
 
 
 ## Who will use it?
@@ -25,11 +23,10 @@ would allow for a wide range of flexibility/**creative liberty in rendering the 
 
 ## User Stories
 
-- As a user, I want the game to end after I lose 3 lives.
-- As a user, I want to be able to view my number of lives as I lose them.
-- As a user, I want to be able to view my score at the end of the game.
-- As a user, I want to be able to be able to add fruit to the basket.
 - As a user, I want to be able to use the left and right arrow keys to move.
+- As a user, I want to be able to be able to add fruit to the basket by hitting the fruit.
+- As a user, I want to be able to view my score as it updates throughout the game.
+- As a user, I want the game to end when I hit an enemy
 
 
 
