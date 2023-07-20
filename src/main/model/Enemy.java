@@ -1,8 +1,5 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 //Represents an enemy
 public class Enemy {
     private int posX;

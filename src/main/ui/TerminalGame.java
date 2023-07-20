@@ -21,9 +21,10 @@ import model.Fruit;
 import model.Game;
 
 //Represents the  window where the fruit game is played
-//NOTE: A lot of the code in the TerminalGame class is similar to the code found in the tutorial at: https://github.students.cs.ubc.ca
+//NOTE: A lot of the code in the TerminalGame class is similar to the code found in the tutorial at:
+// https://github.students.cs.ubc.ca
 //CPSC210/SnakeConsole-Lanterna/blob/main/src/main/java/com/mazenk/snake/ui/TerminalGame.java
-// with the functionality changed for the purpose of my game
+// with the functionality changed for the purpose of this game
 public class TerminalGame {
     private Game game;
     private Screen screen;
@@ -67,7 +68,6 @@ public class TerminalGame {
     }
 
     //MODIFIES: this
-    //MODIFIES: game
     //EFFECTS: takes user arrow key input and moves the user's position depending on the input
     private void handleUserInput() throws IOException {
         KeyStroke stroke = screen.pollInput();

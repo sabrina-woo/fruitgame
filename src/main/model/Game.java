@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import model.Basket;
-import model.Enemy;
-import model.Fruit;
-
 //Represents the game
 public class Game {
     public static final int TICKS = 20;
@@ -35,6 +31,7 @@ public class Game {
         this.ended = false;
     }
 
+    //REQUIRES: TICKS >= 1
     //MODIFIES: this
     //EFFECTS: updates the fruit and enemies
     public void tick() {
@@ -55,6 +52,7 @@ public class Game {
         return fruit;
     }
 
+    //REQUIRES: maxNumberOfFallingFruit >= 0
     //MODIFIES: this
     //EFFECTS: generates the number of fruit required to make the number of falling fruits the same number as
     // maxNumberOfFallingFruit
@@ -70,11 +68,11 @@ public class Game {
     public Enemy createOneEnemy() {
         Random random = new Random();
         int posY = this.screenX;
-        //change x to the highest point in game board after figuring how the grid axis works
         Enemy enemy = new Enemy(random.nextInt(40), 1);
         return enemy;
     }
 
+    //REQUIRES: maxNumberOfFallingEnemies >= 0
     //MODIFIES: this
     //EFFECTS: generates the number of enemies required to make the number of falling enemies the same number as
     // maxNumberOfFallingEnemies
@@ -120,26 +118,24 @@ public class Game {
         }
     }
 
+    //MODIFIES: this
     //EFFECTS: gets the new position of every fruit in the list of fruit on tick
     public List<Fruit> moveFruit(List<Fruit> fruit) {
-        List<Fruit> newFruitPositions = new ArrayList<>();
         for (Fruit currentFruit : fruit) {
             currentFruit.move();
-            newFruitPositions.add(currentFruit);
 
         }
-        return newFruitPositions;
+        return fruit;
     }
 
+    //MODIFIES: this
     //EFFECTS: gets the new position of every enemy in the list of enemies on tick
     public List<Enemy> moveEnemies(List<Enemy> enemies) {
-        List<Enemy> newEnemyPositions = new ArrayList<>();
         for (Enemy currentEnemy : enemies) {
             currentEnemy.move();
-            newEnemyPositions.add(currentEnemy);
 
         }
-        return newEnemyPositions;
+        return enemies;
     }
 
 

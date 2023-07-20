@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 
-
 //Class representing a basket/player
 public class Basket {
     private int direction;
