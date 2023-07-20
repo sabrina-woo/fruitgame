@@ -5,7 +5,7 @@
 The application I will create is a simple game that consists of a **single playable character** that can move left 
 and right across the screen. The user's goal is to **collect falling fruit** that moves vertically down the 
 screen, and **avoid harmful falling objects** falling vertically down the screen. Upon **hitting a harmful object, 
-the game will end** and a score will be given to the user based on the number of fruits collected by the user.
+the game will end**.
 
 
 ## Who will use it?
@@ -17,15 +17,17 @@ but of course, the game can be played by anyone.
 
 - Ever since my first coding class, I would find myself interested in how the video games that I play are coded. By 
 creating this simplistic game, I can explore the mechanisms that I have been curious about.
-- I would like to create something visually appealing, and I believe that creating a simplistic game with this concept 
+- I would like to create something visual, and I believe that creating a simplistic game with this concept 
 would allow for a wide range of flexibility/**creative liberty in rendering the final product**.
 - As I enjoy playing video games, being able to play the final product would be highly satisfying.
 
 ## User Stories
 
-- As a user, I want to be able to use the left and right arrow keys to move.
+- As a user, I want to be able to control the direction of my character.
 - As a user, I want to be able to be able to add fruit to the basket by hitting the fruit.
-- As a user, I want to be able to view my score as it updates throughout the game.
+- As a user, I want to be able to update my score throughout the game.
+- As a user, I want to be able to view my score throughout the game.
+- As a user, I want to face both fruit and enemies 
 - As a user, I want the game to end when I hit an enemy
 
 
