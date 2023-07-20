@@ -330,4 +330,18 @@ public class TestGame {
         assertEquals(1, testGame.getScore());
     }
 
+    @Test
+    void testTick() {
+        List<Fruit> fruit = testGame.getFruit();
+        List<Enemy> enemies = testGame.getEnemies();
+
+        assertEquals(0, fruit.size());
+        assertEquals(0, enemies.size());
+
+        testGame.tick();
+
+        assertEquals(0, fruit.size());
+        assertEquals(0, enemies.size());
+    }
+
 }
