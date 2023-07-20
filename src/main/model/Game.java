@@ -176,6 +176,14 @@ public class Game {
         basket.setPosition(i);
     }
 
+    public void setBasketX(int i) {
+        basket.setXBasket(i);
+    }
+
+    public void setBasketY(int i) {
+        basket.setYBasket(i);
+    }
+
     public List<Enemy> getEnemies() {
         return this.fallingEnemies;
     }

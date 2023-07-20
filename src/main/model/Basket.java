@@ -48,5 +48,13 @@ public class Basket {
         this.posY = i;
     }
 
+    public void setXBasket(int i) {
+        this.posX = i;
+    }
+
+    public void setYBasket(int i) {
+        this.posY = i;
+    }
+
 
 }

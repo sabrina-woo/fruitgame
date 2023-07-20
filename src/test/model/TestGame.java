@@ -172,6 +172,31 @@ public class TestGame {
     }
 
     @Test
+    void testHandleEnemyHitsBasket() {
+        //Enemy has same X but not same Y
+        Enemy oneEnemy = new Enemy(-15, -15);
+        List<Enemy> enemy = testGame.getEnemies();
+        enemy.add(oneEnemy);
+        testGame.setBasketX(-15);
+        testGame.setBasketY(-16);
+
+        testGame.handleEnemies();
+        assertFalse(testGame.isEnded());
+
+        //Enemy has same Y but not same X
+        testGame.setBasketX(-16);
+        testGame.setBasketY(-15);
+        testGame.handleEnemies();
+        assertFalse(testGame.isEnded());
+
+        //Enemy has same Y and same X
+        testGame.setBasketX(-15);
+        testGame.setBasketY(-15);
+        testGame.handleEnemies();
+        assertTrue(testGame.isEnded());
+    }
+
+    @Test
     void handleFoodOffScreen() {
         //fruit stays on the screen by one value
         Fruit oneFruit = new Fruit(0, 0);
@@ -271,6 +296,38 @@ public class TestGame {
         assertEquals(0, oneEnemy.getY());
         assertEquals(0, secondEnemy.getX());
         assertEquals(-2, secondEnemy.getY());
+    }
+
+    @Test
+    void testHandleFoodHitBasketBoundaries() {
+        //Fruit has same X but not same Y
+        Fruit oneFruit = new Fruit(-15, -15);
+        List<Fruit> fruit = testGame.getFruit();
+        List<Fruit> fruitInBasket = testGame.getFruitInBasket();
+        fruit.add(oneFruit);
+        testGame.setBasketX(-15);
+        testGame.setBasketY(-16);
+
+        testGame.handleFood();
+        assertEquals(1, fruit.size());
+        assertEquals(0, fruitInBasket.size());
+        assertEquals(0, testGame.getScore());
+
+        //Fruit has same Y but not same X
+        testGame.setBasketX(-16);
+        testGame.setBasketY(-15);
+        testGame.handleFood();
+        assertEquals(1, fruit.size());
+        assertEquals(0, fruitInBasket.size());
+        assertEquals(0, testGame.getScore());
+
+        //Fruit has same Y and same X
+        testGame.setBasketX(-15);
+        testGame.setBasketY(-15);
+        testGame.handleFood();
+        assertEquals(0, fruit.size());
+        assertEquals(1, fruitInBasket.size());
+        assertEquals(1, testGame.getScore());
     }
 
 }
