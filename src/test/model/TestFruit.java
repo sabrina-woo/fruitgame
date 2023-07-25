@@ -1,6 +1,7 @@
 package model;
 
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -32,5 +33,15 @@ public class TestFruit {
         assertEquals(1, testFruit.getY());
         testFruit.move();
         assertEquals(2, testFruit.getY());
+    }
+
+    @Test
+    void testToJson() {
+        JSONObject jsonObject = testFruit.toJson();
+
+        assertEquals(0, jsonObject.getInt("x position"));
+        assertEquals(0, jsonObject.getInt("y position"));
+
+
     }
 }

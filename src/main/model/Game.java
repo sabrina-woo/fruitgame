@@ -4,8 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistance.JsonReader;
+import persistance.JsonWriter;
+import persistance.Writable;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 //Represents the game
-public class Game {
+public class Game implements Writable {
     public static final int TICKS = 20;
     private Basket basket;
     private List<Fruit> fallingFruit;
@@ -138,6 +148,64 @@ public class Game {
         return enemies;
     }
 
+    public void addFallingFruit(Fruit fruit) {
+        this.fallingFruit.add(fruit);
+    }
+
+    public void addFallingEnemies(Enemy enemy) {
+        this.fallingEnemies.add(enemy);
+    }
+
+    public void addFruitInBasket(Fruit fruit) {
+        this.fruitInBasket.add(fruit);
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("basket x", basket.getX());
+        json.put("basket y", basket.getY());
+        json.put("falling fruit", fallingFruitToJson());
+        json.put("basket fruit", basketFruitToJson());
+        json.put("falling enemies", fallingEnemiesToJson());
+        json.put("score", score);
+        json.put("screen x", screenX);
+        json.put("screen y", screenY);
+        json.put("ended", ended);
+        json.put("max fruit", maxNumberOfFallingFruit);
+        json.put("max enemies", maxNumberOfFallingEnemies);
+        return json;
+    }
+
+    //EFFECTS: returns falling fruit  in this game as a JSON array
+    public JSONArray fallingFruitToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Fruit f : this.fallingFruit) {
+            jsonArray.put(f.toJson());
+        }
+        return jsonArray;
+    }
+
+    //EFFECTS: returns falling enemies  in this game as a JSON array
+    public JSONArray fallingEnemiesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Enemy e : this.fallingEnemies) {
+            jsonArray.put(e.toJson());
+        }
+        return jsonArray;
+    }
+
+    //EFFECTS: returns fruit in basket in this game as a JSON array
+    public JSONArray basketFruitToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Fruit f : this.fruitInBasket) {
+            jsonArray.put(f.toJson());
+        }
+        return jsonArray;
+    }
 
     public boolean isEnded() {
         return this.ended;
@@ -163,8 +231,16 @@ public class Game {
         return this.score;
     }
 
+    public List<Enemy> getEnemies() {
+        return this.fallingEnemies;
+    }
+
     public Basket getBasket() {
         return this.basket;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public void setBasket(int i) {
@@ -179,9 +255,10 @@ public class Game {
         basket.setYBasket(i);
     }
 
-    public List<Enemy> getEnemies() {
-        return this.fallingEnemies;
+    public void setIsEnded(boolean b) {
+        this.ended = b;
     }
+
 
 }
 

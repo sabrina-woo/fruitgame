@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistance.Writable;
+
 //Represents a fruit
-public class Fruit {
+public class Fruit implements Writable {
     private int posX;
     private int posY;
 
@@ -9,6 +12,14 @@ public class Fruit {
     public Fruit(int x, int y) {
         this.posX = x;
         this.posY = y;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("x position", posX);
+        json.put("y position", posY);
+        return json;
     }
 
     //MODIFIES: this

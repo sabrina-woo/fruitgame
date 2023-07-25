@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistance.Writable;
+
 //Represents an enemy
-public class Enemy {
+public class Enemy implements Writable {
     private int posX;
     private int posY;
 
@@ -9,6 +12,14 @@ public class Enemy {
     public Enemy(int x, int y) {
         this.posX = x;
         this.posY = y;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("x position", posX);
+        json.put("y position", posY);
+        return json;
     }
 
     //MODIFIES: this

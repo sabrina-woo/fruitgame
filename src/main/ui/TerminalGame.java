@@ -12,13 +12,17 @@ import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 import model.Basket;
 import model.Enemy;
 import model.Fruit;
 import model.Game;
+import persistance.JsonReader;
+import persistance.JsonWriter;
 
 //Represents the  window where the fruit game is played
 //NOTE: A lot of the code in the TerminalGame class is similar to the code found in the tutorial at:
@@ -26,27 +30,52 @@ import model.Game;
 //CPSC210/SnakeConsole-Lanterna/blob/main/src/main/java/com/mazenk/snake/ui/TerminalGame.java
 // with the functionality changed for the purpose of this game
 public class TerminalGame {
+    private static final String JSON_STORE = "./data/savedGame.json";
+    private Scanner input;
     private Game game;
     private Screen screen;
     private WindowBasedTextGUI gameGUI;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     //MODIFIES: this
     //EFFECTS: sets up the window where the game is played and starts the game
-    public void start() throws IOException, InterruptedException {
-        screen = new DefaultTerminalFactory().createScreen();
-        screen.startScreen();
+    public void start() throws FileNotFoundException, IOException, InterruptedException {
+        Scanner input = new Scanner(System.in);
+        System.out.println("enter 'load' to load a previously saved game, or 'start; to start a new game");
+        String response = input.nextLine();
 
-        TerminalSize terminalSize = screen.getTerminalSize();
+        if (response.equals("load")) {
+            screen = new DefaultTerminalFactory().createScreen();
+            screen.startScreen();
 
-        game = new Game((terminalSize.getColumns() - 1) / 2, terminalSize.getRows() - 2);
+            TerminalSize terminalSize = screen.getTerminalSize();
 
-        beginTicks();
+            game = new Game((terminalSize.getColumns() - 1) / 2, terminalSize.getRows() - 2);
+            jsonWriter = new JsonWriter(JSON_STORE);
+            jsonReader = new JsonReader(JSON_STORE);
+            loadGame();
+            beginTicks();
 
+        } else {
+            screen = new DefaultTerminalFactory().createScreen();
+            screen.startScreen();
+
+            TerminalSize terminalSize = screen.getTerminalSize();
+
+            game = new Game((terminalSize.getColumns() - 1) / 2, terminalSize.getRows() - 2);
+            jsonWriter = new JsonWriter(JSON_STORE);
+            jsonReader = new JsonReader(JSON_STORE);
+            beginTicks();
+        }
     }
+
+
 
     //EFFECTS: Begins ticking cycle and continues the ticking cycle if the game is not ended,
     // otherwise if the game is ended, exits the game.
     private void beginTicks() throws IOException, InterruptedException {
+        System.out.println("press up arrow to save game");
         while (!game.isEnded() || gameGUI.getActiveWindow() != null) {
             tick();
             Thread.sleep(1000L / Game.TICKS);
@@ -78,7 +107,13 @@ public class TerminalGame {
         if (stroke.getCharacter() != null) {
             return;
         }
-        int direction = directionFrom(stroke.getKeyType());
+        KeyType keyPressed = stroke.getKeyType();
+        if (keyPressed == KeyType.ArrowUp) {
+            saveGame();
+            System.out.println("Game saved");
+        }
+
+        int direction = directionFrom(keyPressed);
 
         game.getBasket().move(direction);
 
@@ -161,5 +196,29 @@ public class TerminalGame {
         text.setForegroundColor(colour);
         text.putString(x * 2, y + 1, String.valueOf(c));
     }
+
+    // EFFECTS: saves the workroom to file
+    private void saveGame() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(game);
+            jsonWriter.close();
+            System.out.println("Saved game to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write file");
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadGame() {
+        try {
+            game = jsonReader.read();
+            System.out.println("Loaded game");
+        } catch (IOException e) {
+            System.out.println("Unable to read file");
+        }
+    }
+
 
 }

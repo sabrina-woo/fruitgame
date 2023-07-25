@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -344,4 +346,35 @@ public class TestGame {
         assertEquals(0, enemies.size());
     }
 
+
+
+    @Test
+    void testToJson() {
+        JSONObject jsonObject = testGame.toJson();
+
+        assertEquals(0, jsonObject.getInt("score"));
+        assertEquals(0, jsonObject.getInt("screen x"));
+        assertEquals(0, jsonObject.getInt("screen y"));
+        assertFalse(jsonObject.getBoolean("ended"));
+        assertEquals(20, jsonObject.getInt("basket y"));
+        assertEquals(10, jsonObject.getInt("basket x"));
+    }
+
+    @Test
+    void testFallingFruitToJson() {
+        JSONArray jsonArray = testGame.fallingFruitToJson();
+        assertTrue(jsonArray.isEmpty());
+    }
+
+    @Test
+    void testFallingEnemiesToJson() {
+        JSONArray jsonArray = testGame.fallingEnemiesToJson();
+        assertTrue(jsonArray.isEmpty());
+    }
+
+    @Test
+    void testBasketFruitToJson() {
+        JSONArray jsonArray = testGame.basketFruitToJson();
+        assertTrue(jsonArray.isEmpty());
+    }
 }

@@ -30,6 +30,8 @@ would allow for a wide range of flexibility/**creative liberty in rendering the 
 - As a user, I want to be able to view my score and see it increase when I collect every new fruit throughout the game.
 - As a user, I want the game to end when I hit an enemy.
 - As a user, I want to be able to view my final score at the end of the game.
+- As a user, I want the option to save my game.
+- As a user, I want to option to load a saved game.
 
 
 

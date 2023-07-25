@@ -1,19 +1,20 @@
 package model;
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class TestEnemy {
-    Fruit testEnemy;
-    Fruit enemy;
+    Enemy testEnemy;
+    Enemy enemy;
 
 
     @BeforeEach
     void runBefore() {
-        testEnemy = new Fruit(0, 0);
-        enemy = new Fruit(5, 5);
+        testEnemy = new Enemy(0, 0);
+        enemy = new Enemy(5, 5);
     }
 
     @Test
@@ -31,5 +32,15 @@ public class TestEnemy {
         assertEquals(1, testEnemy.getY());
         testEnemy.move();
         assertEquals(2, testEnemy.getY());
+    }
+
+    @Test
+    void testToJson() {
+        JSONObject jsonObject = testEnemy.toJson();
+
+        assertEquals(0, jsonObject.getInt("x position"));
+        assertEquals(0, jsonObject.getInt("y position"));
+
+
     }
 }
