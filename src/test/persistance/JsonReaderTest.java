@@ -54,7 +54,7 @@ public class JsonReaderTest extends JsonTest{
             assertEquals(20, g.getX());
             assertEquals(20, g.getY());
             assertEquals(6, g.getFruit().size());
-            assertEquals(0, g.getFruitInBasket().size());
+            assertEquals(1, g.getFruitInBasket().size());
             assertEquals(3, g.getEnemies().size());
         } catch (IOException e) {
             fail("Couldn't read from file");
