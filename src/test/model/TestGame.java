@@ -346,7 +346,26 @@ public class TestGame {
         assertEquals(0, enemies.size());
     }
 
+    @Test
+    void testAddFallingFruit() {
+        assertEquals(0, game.getFruit().size());
+        game.addFallingFruit(new Fruit(0, 0));
+        assertEquals(1, game.getFruit().size());
+    }
 
+    @Test
+    void testAddFallingEnemies() {
+        assertEquals(0, game.getEnemies().size());
+        game.addFallingEnemies(new Enemy(0, 0));
+        assertEquals(1, game.getEnemies().size());
+    }
+
+    @Test
+    void testAddFruitInBasket() {
+        assertEquals(0, game.getFruitInBasket().size());
+        game.addFruitInBasket(new Fruit(0, 0));
+        assertEquals(1, game.getFruitInBasket().size());
+    }
 
     @Test
     void testToJson() {
@@ -371,6 +390,7 @@ public class TestGame {
         JSONArray jsonArray = testGame.fallingEnemiesToJson();
         assertTrue(jsonArray.isEmpty());
     }
+
 
     @Test
     void testBasketFruitToJson() {
