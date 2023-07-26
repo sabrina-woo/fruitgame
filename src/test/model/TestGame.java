@@ -383,12 +383,18 @@ public class TestGame {
     void testFallingFruitToJson() {
         JSONArray jsonArray = testGame.fallingFruitToJson();
         assertTrue(jsonArray.isEmpty());
+        testGame.addFallingFruit(new Fruit(0, 0));
+        JSONArray jsonArrayTwo = testGame.fallingFruitToJson();
+        assertFalse(jsonArrayTwo.isEmpty());
     }
 
     @Test
     void testFallingEnemiesToJson() {
         JSONArray jsonArray = testGame.fallingEnemiesToJson();
         assertTrue(jsonArray.isEmpty());
+        testGame.addFallingEnemies(new Enemy(0, 0));
+        JSONArray jsonArrayTwo = testGame.fallingEnemiesToJson();
+        assertFalse(jsonArrayTwo.isEmpty());
     }
 
 
@@ -396,5 +402,9 @@ public class TestGame {
     void testBasketFruitToJson() {
         JSONArray jsonArray = testGame.basketFruitToJson();
         assertTrue(jsonArray.isEmpty());
+        testGame.addFruitInBasket(new Fruit(0, 0));
+        JSONArray jsonArrayTwo = testGame.basketFruitToJson();
+        assertFalse(jsonArrayTwo.isEmpty());
+
     }
 }
