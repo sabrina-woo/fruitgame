@@ -30,12 +30,12 @@ public class JsonWriterTest extends JsonTest {
     void testWriterNewGame() {
         try {
             Game g = new Game(0, 0);
-            JsonWriter writer = new JsonWriter("./data/testNewGame.json");
+            JsonWriter writer = new JsonWriter("./data/testWriterNewGame.json");
             writer.open();
             writer.write(g);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testNewGame.json");
+            JsonReader reader = new JsonReader("./data/testWriterNewGame.json");
             g = reader.read();
             assertEquals(0, g.getScore());
             assertFalse(g.isEnded());
@@ -55,12 +55,12 @@ public class JsonWriterTest extends JsonTest {
             try {
                 Game g = new Game(20, 20);
                 g.tick();
-                JsonWriter writer = new JsonWriter("./data/testArbitraryGame.json");
+                JsonWriter writer = new JsonWriter("./data/testWriterArbitraryGame.json");
                 writer.open();
                 writer.write(g);
                 writer.close();
 
-                JsonReader reader = new JsonReader("./data/testArbitraryGame.json");
+                JsonReader reader = new JsonReader("./data/testWriterArbitraryGame.json");
                 g = reader.read();
                 assertEquals(0, g.getScore());
                 assertFalse(g.isEnded());

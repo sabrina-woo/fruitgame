@@ -26,14 +26,14 @@ public class JsonReaderTest extends JsonTest{
 
     @Test
     void testReaderNewGame() {
-        JsonReader reader = new JsonReader("./data/testNewGame.json");
+        JsonReader reader = new JsonReader("./data/testNewGame");
         try {
             Game g = reader.read();
             assertEquals(0, g.getScore());
             assertFalse(g.isEnded());
             assertEquals(0, g.getScore());
-            assertEquals(0, g.getX());
-            assertEquals(0, g.getY());
+            assertEquals(39, g.getX());
+            assertEquals(22, g.getY());
             assertEquals(0, g.getFruit().size());
             assertEquals(0, g.getFruitInBasket().size());
             assertEquals(0, g.getEnemies().size());
@@ -44,15 +44,15 @@ public class JsonReaderTest extends JsonTest{
 
     @Test
     void testReaderArbitrary() {
-        JsonReader reader = new JsonReader("./data/testArbitraryGame.json");
+        JsonReader reader = new JsonReader("./data/testArbitraryGame");
 
         try {
             Game g = reader.read();
             assertEquals(0, g.getScore());
             assertFalse(g.isEnded());
             assertEquals(0, g.getScore());
-            assertEquals(20, g.getX());
-            assertEquals(20, g.getY());
+            assertEquals(39, g.getX());
+            assertEquals(22, g.getY());
             assertEquals(6, g.getFruit().size());
             assertEquals(1, g.getFruitInBasket().size());
             assertEquals(3, g.getEnemies().size());

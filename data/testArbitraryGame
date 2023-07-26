@@ -1,7 +1,10 @@
 {
     "max enemies": 3,
     "score": 0,
-    "basket fruit": [],
+    "basket fruit": [{
+        "y position": 20,
+        "x position": 16
+    }],
     "screen y": 22,
     "screen x": 39,
     "falling fruit": [
