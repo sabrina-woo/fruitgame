@@ -1,0 +1,54 @@
+{
+    "max enemies": 3,
+    "score": 1,
+    "basket fruit": [{
+        "y position": 20,
+        "x position": 16
+    }],
+    "screen y": 22,
+    "screen x": 39,
+    "falling fruit": [
+        {
+            "y position": 15,
+            "x position": 7
+        },
+        {
+            "y position": 12,
+            "x position": 29
+        },
+        {
+            "y position": 12,
+            "x position": 2
+        },
+        {
+            "y position": 12,
+            "x position": 32
+        },
+        {
+            "y position": 12,
+            "x position": 19
+        },
+        {
+            "y position": 12,
+            "x position": 16
+        }
+    ],
+    "max fruit": 6,
+    "falling enemies": [
+        {
+            "y position": 12,
+            "x position": 23
+        },
+        {
+            "y position": 12,
+            "x position": 8
+        },
+        {
+            "y position": 12,
+            "x position": 27
+        }
+    ],
+    "ended": false,
+    "basket x": 16,
+    "basket y": 20
+}
