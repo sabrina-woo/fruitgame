@@ -139,6 +139,6 @@ public class JsonReader {
         int posX = jsonObject.getInt("x position");
         int posY = jsonObject.getInt("y position");
         Fruit fruit = new Fruit(posX, posY);
-        g.addFruitInBasket(fruit);
+        g.getBasket().addFruitInBasket(fruit);
     }
 }

@@ -19,7 +19,7 @@ public class Game implements Writable {
     public static final int TICKS = 20;
     private Basket basket;
     private List<Fruit> fallingFruit;
-    private List<Fruit> fruitInBasket;
+//    private List<Fruit> fruitInBasket;
     private List<Enemy> fallingEnemies;
     private boolean ended;
     private int score;
@@ -37,7 +37,7 @@ public class Game implements Writable {
         this.fallingFruit = new ArrayList<>();
         this.fallingEnemies = new ArrayList<>();
         this.score = 0;
-        this.fruitInBasket = new ArrayList<>();
+//        this.fruitInBasket = new ArrayList<>();
         this.ended = false;
     }
 
@@ -105,7 +105,7 @@ public class Game implements Writable {
             }
             if (basket.getX() == fruit.getX() && basket.getY() == fruit.getY()) {
                 fallingFruit.remove(fruit);
-                this.fruitInBasket.add(fruit);
+                this.basket.addFruitInBasket(fruit);
                 this.score++;
                 i--;
             }
@@ -148,18 +148,25 @@ public class Game implements Writable {
         return enemies;
     }
 
+    //MODIFIES: this
+    //EFFECTS: Adds a fruit to fallingFruit
     public void addFallingFruit(Fruit fruit) {
         this.fallingFruit.add(fruit);
     }
 
+    //MODIFIES: this
+    //EFFECTS: Adds an enemy to fallingEnemies
     public void addFallingEnemies(Enemy enemy) {
         this.fallingEnemies.add(enemy);
     }
 
-    public void addFruitInBasket(Fruit fruit) {
-        this.fruitInBasket.add(fruit);
-    }
+//    //MODIFIES: this
+//    //EFFECTS: Adds a fruit to fruitInBasket
+//    public void addFruitInBasket(Fruit fruit) {
+//        this.basket.addFruitInBasket(fruit);
+//    }
 
+    //EFFECTS: puts game information into JSON file
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -201,7 +208,7 @@ public class Game implements Writable {
     public JSONArray basketFruitToJson() {
         JSONArray jsonArray = new JSONArray();
 
-        for (Fruit f : this.fruitInBasket) {
+        for (Fruit f : this.basket.getFruitInBasket()) {
             jsonArray.put(f.toJson());
         }
         return jsonArray;
@@ -224,7 +231,7 @@ public class Game implements Writable {
     }
 
     public List<Fruit> getFruitInBasket() {
-        return this.fruitInBasket;
+        return this.basket.getFruitInBasket();
     }
 
     public int getScore() {

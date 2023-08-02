@@ -14,6 +14,7 @@ public class Fruit implements Writable {
         this.posY = y;
     }
 
+    //EFFECTS: places the x and y position of a fruit into a JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

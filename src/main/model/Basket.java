@@ -21,6 +21,12 @@ public class Basket {
     }
 
     //MODIFIES: this
+    //EFFECTS: adds the fruit to this.fruitInBasket
+    public void addFruitInBasket(Fruit fruit) {
+        this.fruitInBasket.add(fruit);
+    }
+
+    //MODIFIES: this
     //EFFECTS: moves the basket by the value of direction
     public void move(int i) {
         this.posX = this.posX + i;

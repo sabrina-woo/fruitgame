@@ -363,7 +363,7 @@ public class TestGame {
     @Test
     void testAddFruitInBasket() {
         assertEquals(0, game.getFruitInBasket().size());
-        game.addFruitInBasket(new Fruit(0, 0));
+        game.getBasket().addFruitInBasket(new Fruit(0, 0));
         assertEquals(1, game.getFruitInBasket().size());
     }
 
@@ -402,7 +402,7 @@ public class TestGame {
     void testBasketFruitToJson() {
         JSONArray jsonArray = testGame.basketFruitToJson();
         assertTrue(jsonArray.isEmpty());
-        testGame.addFruitInBasket(new Fruit(0, 0));
+        testGame.getBasket().addFruitInBasket(new Fruit(0, 0));
         JSONArray jsonArrayTwo = testGame.basketFruitToJson();
         assertFalse(jsonArrayTwo.isEmpty());
 

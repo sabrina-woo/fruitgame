@@ -1,54 +1,76 @@
 {
     "max enemies": 3,
-    "score": 1,
-    "basket fruit": [{
-        "y position": 20,
-        "x position": 16
-    }],
+    "score": 6,
+    "basket fruit": [
+        {
+            "y position": 20,
+            "x position": 8
+        },
+        {
+            "y position": 20,
+            "x position": 8
+        },
+        {
+            "y position": 20,
+            "x position": 8
+        },
+        {
+            "y position": 20,
+            "x position": 10
+        },
+        {
+            "y position": 20,
+            "x position": 9
+        },
+        {
+            "y position": 20,
+            "x position": 9
+        }
+    ],
     "screen y": 22,
     "screen x": 39,
     "falling fruit": [
         {
-            "y position": 15,
-            "x position": 7
+            "y position": 20,
+            "x position": 0
         },
         {
-            "y position": 12,
-            "x position": 29
+            "y position": 17,
+            "x position": 28
         },
         {
-            "y position": 12,
-            "x position": 2
+            "y position": 14,
+            "x position": 22
         },
         {
-            "y position": 12,
-            "x position": 32
+            "y position": 11,
+            "x position": 34
         },
         {
-            "y position": 12,
-            "x position": 19
+            "y position": 11,
+            "x position": 21
         },
         {
-            "y position": 12,
-            "x position": 16
+            "y position": 11,
+            "x position": 13
         }
     ],
     "max fruit": 6,
     "falling enemies": [
         {
-            "y position": 12,
-            "x position": 23
+            "y position": 11,
+            "x position": 6
         },
         {
-            "y position": 12,
-            "x position": 8
+            "y position": 11,
+            "x position": 31
         },
         {
-            "y position": 12,
-            "x position": 27
+            "y position": 11,
+            "x position": 1
         }
     ],
     "ended": false,
-    "basket x": 16,
+    "basket x": 39,
     "basket y": 20
 }

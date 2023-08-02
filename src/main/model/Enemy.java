@@ -14,6 +14,7 @@ public class Enemy implements Writable {
         this.posY = y;
     }
 
+    //EFFECTS: places the x and y position of an enemy into a JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
