@@ -18,14 +18,14 @@ class TestBasket {
 
     @BeforeEach
     void runBefore() {
-        testBasket = new Basket();
+        testBasket = new Basket(posXStarting, posYConstant);
         fallingFruit = new ArrayList<>();
     }
 
     @Test
     void testConstructor() {
-        assertEquals(posXStarting, testBasket.getX());
-        assertEquals(posYConstant, testBasket.getY());
+        assertEquals(5, testBasket.getX());
+        assertEquals(5, testBasket.getY());
         assertEquals(0, testBasket.getDirection());
         assertEquals(fallingFruit, testBasket.getFruitInBasket());
     }
@@ -34,19 +34,19 @@ class TestBasket {
     void testSetPosition() {
         //Starts off not moving at all
         testBasket.move(0);
-        assertEquals(posXStarting, testBasket.getX());
+        assertEquals(5, testBasket.getX());
 
         //Moves once to the right
         testBasket.move(1);
-        assertEquals(posXStarting + 1, testBasket.getX());
+        assertEquals(5 + 1, testBasket.getX());
 
         //Stops moving
         testBasket.move(0);
-        assertEquals(posXStarting + 1, testBasket.getX());
+        assertEquals(5 + 1, testBasket.getX());
 
         //Moves once to the left
         testBasket.move(-1);
-        assertEquals(10, testBasket.getX());
+        assertEquals(5, testBasket.getX());
 
     }
 

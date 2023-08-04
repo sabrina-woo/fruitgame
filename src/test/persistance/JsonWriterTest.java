@@ -1,14 +1,10 @@
 package persistance;
 
-import model.Fruit;
-import model.Enemy;
-import model.Basket;
 import model.Game;
 
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -54,7 +50,7 @@ public class JsonWriterTest extends JsonTest {
         void testWriterArbitraryGame() {
             try {
                 Game g = new Game(20, 20);
-                g.tick();
+                g.update();
                 JsonWriter writer = new JsonWriter("./data/testWriterArbitraryGame.json");
                 writer.open();
                 writer.write(g);

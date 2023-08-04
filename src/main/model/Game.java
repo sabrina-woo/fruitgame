@@ -6,45 +6,40 @@ import java.util.Random;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import persistance.JsonReader;
-import persistance.JsonWriter;
 import persistance.Writable;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 //Represents the game
 public class Game implements Writable {
-    public static final int TICKS = 20;
+
     private Basket basket;
     private List<Fruit> fallingFruit;
-//    private List<Fruit> fruitInBasket;
     private List<Enemy> fallingEnemies;
     private boolean ended;
     private int score;
-    private int screenX;
-    private int screenY;
+
     int maxNumberOfFallingFruit = 6;
     int maxNumberOfFallingEnemies = 3;
+
+    private int screenX;
+    private int screenY;
+    public static final int TICKS = 20;
 
     //Constructs a game
     //EFFECTS: creates a game with an empty list of fruit and enemies, and the score starting at zero
     public Game(int x, int y) {
         this.screenX = x;
         this.screenY = y;
-        this.basket = new Basket();
+        this.basket = new Basket(x, y);
         this.fallingFruit = new ArrayList<>();
         this.fallingEnemies = new ArrayList<>();
         this.score = 0;
-//        this.fruitInBasket = new ArrayList<>();
         this.ended = false;
     }
 
     //REQUIRES: TICKS >= 1
     //MODIFIES: this
     //EFFECTS: updates the fruit and enemies
-    public void tick() {
+    public void update() {
         moveFruit(this.fallingFruit);
         moveEnemies(this.fallingEnemies);
         createFruit();
@@ -57,7 +52,7 @@ public class Game implements Writable {
     public Fruit createOneFruit() {
         Random random = new Random();
         int posX = this.screenX;
-        Fruit fruit = new Fruit(random.nextInt(40), 1);
+        Fruit fruit = new Fruit(random.nextInt(screenX + 1), 1);
 
         return fruit;
     }
@@ -78,7 +73,7 @@ public class Game implements Writable {
     public Enemy createOneEnemy() {
         Random random = new Random();
         int posY = this.screenX;
-        Enemy enemy = new Enemy(random.nextInt(40), 1);
+        Enemy enemy = new Enemy(random.nextInt(screenX + 1), 1);
         return enemy;
     }
 

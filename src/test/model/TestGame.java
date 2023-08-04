@@ -340,7 +340,7 @@ public class TestGame {
         assertEquals(0, fruit.size());
         assertEquals(0, enemies.size());
 
-        testGame.tick();
+        testGame.update();
 
         assertEquals(0, fruit.size());
         assertEquals(0, enemies.size());
@@ -375,8 +375,8 @@ public class TestGame {
         assertEquals(0, jsonObject.getInt("screen x"));
         assertEquals(0, jsonObject.getInt("screen y"));
         assertFalse(jsonObject.getBoolean("ended"));
-        assertEquals(20, jsonObject.getInt("basket y"));
-        assertEquals(10, jsonObject.getInt("basket x"));
+        assertEquals(-15, jsonObject.getInt("basket y"));
+        assertEquals(0, jsonObject.getInt("basket x"));
     }
 
     @Test

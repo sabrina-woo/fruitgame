@@ -3,10 +3,16 @@ package model;
 import org.json.JSONObject;
 import persistance.Writable;
 
+import java.awt.*;
+
 //Represents an enemy
 public class Enemy implements Writable {
+
     private int posX;
     private int posY;
+    public static final Color COLOR = new Color(0, 0, 0);
+    public static final int SIZE_X = 15;
+    public static final int SIZE_Y = 9;
 
     //constructs an enemy at the given x and y location
     public Enemy(int x, int y) {

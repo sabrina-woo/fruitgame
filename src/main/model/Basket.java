@@ -1,21 +1,26 @@
 package model;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 //Class representing a basket/player
 public class Basket {
+
+    public static final int SIZE_X = 15;
+    public static final int SIZE_Y = 8;
     private int direction;
     private int posX;
     private int posY;
     private ArrayList<Fruit> fruitInBasket;
 
+    public static final Color COLOR = new Color(94, 61, 34);
     public static final int posYConstant = 20;
     public static final int posXStarting = 10;
 
     //Constructs the basket/player
-    public Basket() {
-        this.posX = posXStarting;
-        this.posY = posYConstant;
+    public Basket(int x, int y) {
+        this.posX = x / 2;
+        this.posY = y - 15;
         this.direction = 0;
         this.fruitInBasket = new ArrayList<>();
     }
