@@ -189,7 +189,7 @@ public class TestGame {
         testGame.setBasketX(-16);
         testGame.setBasketY(-15);
         testGame.handleEnemies();
-        assertFalse(testGame.isEnded());
+        assertTrue(testGame.isEnded());
 
         //Enemy has same Y and same X
         testGame.setBasketX(-15);
@@ -319,9 +319,9 @@ public class TestGame {
         testGame.setBasketX(-16);
         testGame.setBasketY(-15);
         testGame.handleFood();
-        assertEquals(1, fruit.size());
-        assertEquals(0, fruitInBasket.size());
-        assertEquals(0, testGame.getScore());
+        assertEquals(0, fruit.size());
+        assertEquals(1, fruitInBasket.size());
+        assertEquals(1, testGame.getScore());
 
         //Fruit has same Y and same X
         testGame.setBasketX(-15);

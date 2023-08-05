@@ -48,9 +48,9 @@ public class JsonReaderTest extends JsonTest{
 
         try {
             Game g = reader.read();
-            assertEquals(0, g.getScore());
+            assertEquals(1, g.getScore());
             assertFalse(g.isEnded());
-            assertEquals(0, g.getScore());
+            assertEquals(1, g.getScore());
             assertEquals(39, g.getX());
             assertEquals(22, g.getY());
             assertEquals(6, g.getFruit().size());

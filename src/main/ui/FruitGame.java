@@ -14,39 +14,46 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
-
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
 public class FruitGame extends JFrame {
 
-    private static final int INTERVAL = 3;
+    private static final int INTERVAL = 5;
     private Game game;
     private GamePanel gp;
     private SidePanel sp;
+    private EndScreen es;
+//    private StartScreen ss;
 
     //Constructs main window
     // effects: sets up window in which Space Invaders game will be played
 
     public FruitGame() {
         super("Fruit Game");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setUndecorated(false);
         int screenWidth = getWidthDimensions();
         int screenHeight = getHeightDimensions();
+        setSize(getWidthDimensions(), getHeightDimensions());
+
         game = new Game(screenWidth, screenHeight);
         gp = new GamePanel(game);
-        sp = new SidePanel(game);
+//        sp = new SidePanel(game);
+        es = new EndScreen(game);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setUndecorated(false);
+
+        start();
+
+    }
+
+    private void start() {
         add(gp);
-        add(sp, BorderLayout.NORTH);
+//        add(sp, BorderLayout.WEST); // BorderLayout.WEST)
         addKeyListener(new KeyHandler());
         pack();
         centreOnScreen();
         setVisible(true);
         addTimer();
-
     }
 
     private int getWidthDimensions() {
@@ -68,10 +75,17 @@ public class FruitGame extends JFrame {
         Timer t = new Timer(INTERVAL, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                game.update();
-                gp.repaint();
-                sp.update();
-            }
+                if (game.isEnded()) {
+                    add(es);
+                    remove(gp);
+//                    remove(sp);
+                    es.repaint();
+                } else {
+                    gp.repaint();
+                    game.update();
+//                    sp.update();
+                }
+                }
         });
         t.start();
     }
@@ -89,8 +103,6 @@ public class FruitGame extends JFrame {
             }
         }
     }
-
-
 
     public static void main(String[] args) {
         new FruitGame();

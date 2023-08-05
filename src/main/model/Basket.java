@@ -2,12 +2,13 @@ package model;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 //Class representing a basket/player
 public class Basket {
 
-    public static final int SIZE_X = 15;
-    public static final int SIZE_Y = 8;
+    public static final int SIZE_X = 16;
+    public static final int SIZE_Y = 16;
     private int direction;
     private int posX;
     private int posY;
@@ -30,6 +31,8 @@ public class Basket {
     public void addFruitInBasket(Fruit fruit) {
         this.fruitInBasket.add(fruit);
     }
+
+
 
     //MODIFIES: this
     //EFFECTS: moves the basket by the value of direction

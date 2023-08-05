@@ -8,6 +8,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import persistance.Writable;
 
+import static java.lang.Integer.valueOf;
+
 //Represents the game
 public class Game implements Writable {
 
@@ -48,11 +50,23 @@ public class Game implements Writable {
         handleFood();
     }
 
+
+    //MODIFIES: this
     //EFFECTS: creates one fruit at a random x position and the given y position
     public Fruit createOneFruit() {
         Random random = new Random();
         int posX = this.screenX;
         Fruit fruit = new Fruit(random.nextInt(screenX + 1), 1);
+
+        return fruit;
+    }
+
+    //MODIFIES: this
+    //EFFECTS: creates one fruit at a random x position and a random y position
+    public Fruit createOneFruitRandom() {
+        Random random = new Random();
+        int posX = this.screenX;
+        Fruit fruit = new Fruit(random.nextInt(screenX + 1), random.nextInt(screenX + 1));
 
         return fruit;
     }
@@ -98,7 +112,12 @@ public class Game implements Writable {
                 fallingFruit.remove(fruit);
                 i--;
             }
-            if (basket.getX() == fruit.getX() && basket.getY() == fruit.getY()) {
+
+            boolean leftBasketEdge =  fruit.getX() >= basket.getX() - (Basket.SIZE_X / 2);
+            boolean rightBasketEdge =  fruit.getX() <= basket.getX() + Basket.SIZE_X;
+            boolean valueRange = leftBasketEdge && rightBasketEdge;
+
+            if (valueRange && basket.getY() == fruit.getY()) {
                 fallingFruit.remove(fruit);
                 this.basket.addFruitInBasket(fruit);
                 this.score++;
@@ -116,7 +135,12 @@ public class Game implements Writable {
                 fallingEnemies.remove(enemy);
                 i--;
             }
-            if (basket.getX() == enemy.getX() && basket.getY() == enemy.getY()) {
+
+            boolean leftBasketEdge =  enemy.getX() >= basket.getX() - (Basket.SIZE_X / 2);
+            boolean rightBasketEdge =  enemy.getX() <= basket.getX() + Basket.SIZE_X;
+            boolean valueRange = leftBasketEdge && rightBasketEdge;
+
+            if (valueRange && basket.getY() == enemy.getY()) {
                 this.ended = true;
             }
 
@@ -132,6 +156,7 @@ public class Game implements Writable {
         }
         return fruit;
     }
+
 
     //MODIFIES: this
     //EFFECTS: gets the new position of every enemy in the list of enemies on tick
@@ -155,11 +180,13 @@ public class Game implements Writable {
         this.fallingEnemies.add(enemy);
     }
 
-//    //MODIFIES: this
-//    //EFFECTS: Adds a fruit to fruitInBasket
-//    public void addFruitInBasket(Fruit fruit) {
-//        this.basket.addFruitInBasket(fruit);
-//    }
+    public void removeRandomFruit() {
+        int size = this.getFruitInBasket().size();
+        Random random = new Random();
+        if (size > 0) {
+            this.getFruitInBasket().remove(random.nextInt(size));
+        }
+    }
 
     //EFFECTS: puts game information into JSON file
     @Override
@@ -230,7 +257,7 @@ public class Game implements Writable {
     }
 
     public int getScore() {
-        return this.score;
+        return this.getFruitInBasket().size();
     }
 
     public List<Enemy> getEnemies() {
