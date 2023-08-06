@@ -156,7 +156,7 @@ public class GamePanel extends JPanel implements ActionListener {
             this.game = jsonReader.read();
             fruitGame.setGame(game);
         } catch (IOException e) {
-            System.out.println("Unable to read file");
+            fruitGame.setGame(game);
         }
     }
 
@@ -168,7 +168,7 @@ public class GamePanel extends JPanel implements ActionListener {
             jsonWriter.close();
             System.out.println("Saved game to " + JSON_STORE);
         } catch (FileNotFoundException e) {
-            System.out.println("Unable to write file");
+            fruitGame.setGame(game);
         }
     }
 

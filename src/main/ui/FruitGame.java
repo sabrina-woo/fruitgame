@@ -24,6 +24,7 @@ public class FruitGame extends JFrame {
     private Game game;
     private GamePanel gp;
     private EndScreen es;
+
 //    private StartScreen ss;
 
     //Constructs main window
@@ -37,7 +38,6 @@ public class FruitGame extends JFrame {
 
         game = new Game(screenWidth, screenHeight);
         gp = new GamePanel(game, this);
-        es = new EndScreen(game);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setUndecorated(false);
 
@@ -75,8 +75,9 @@ public class FruitGame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 if (game.isEnded()) {
-                    add(es);
+                    es = new EndScreen(game);
                     remove(gp);
+                    add(es);
                     revalidate();
                     es.repaint();
                 } else {

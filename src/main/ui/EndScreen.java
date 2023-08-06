@@ -1,10 +1,6 @@
 package ui;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
@@ -15,7 +11,6 @@ import javax.swing.*;
 import model.Fruit;
 import model.Game;
 
-import persistance.JsonReader;
 import persistance.JsonWriter;
 
 import static java.awt.Color.*;
@@ -25,7 +20,10 @@ public class EndScreen extends JPanel implements ActionListener {
     private Game game;
     private JButton save;
     private JsonWriter jsonWriter;
-    private JsonReader jsonReader;
+    private ImageIcon ferretImage;
+    private JLabel imageAsLabel;
+    private JPanel ferretPanel;
+
     private static final String JSON_STORE = "./data/savedGame.json";
 
     //Constructs a game panel
@@ -33,9 +31,19 @@ public class EndScreen extends JPanel implements ActionListener {
     public EndScreen(Game g) {
         setPreferredSize(new Dimension(g.getX(), g.getY()));
         setBackground(Color.PINK);
+        jsonWriter = new JsonWriter(JSON_STORE);
+
         this.game = g;
+
+        ferretPanel = new JPanel();
+        ferretPanel.setPreferredSize(new Dimension(g.getX() / 5, g.getY() / 5));
+        add(ferretPanel);
+
+        loadImage();
+
         addFruit();
         removeFruit();
+        removeFruitTopHalf();
         saveButton();
     }
 
@@ -96,12 +104,22 @@ public class EndScreen extends JPanel implements ActionListener {
         add(btn);
     }
 
+    private void removeFruitTopHalf() {
+        JButton btn = new JButton("Remove fruit top Screen");
+        btn.setActionCommand("remove fruit top half of screen");
+        btn.addActionListener(this);
+        add(btn);
+    }
+
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("add fruit")) {
-            game.getFruitInBasket().add(game.createOneFruitRandom());
+            game.createOneFruitRandom();
         }
         if (e.getActionCommand().equals("remove fruit")) {
             game.removeRandomFruit();
+        }
+        if (e.getActionCommand().equals("remove fruit top half of screen")) {
+            game.removeTopHalf();
         }
         if (e.getActionCommand().equals("save")) {
             saveGame();
@@ -118,6 +136,7 @@ public class EndScreen extends JPanel implements ActionListener {
     // EFFECTS: saves the workroom to file
     public void saveGame() {
         try {
+            game.setIsEnded(false);
             jsonWriter.open();
             jsonWriter.write(game);
             jsonWriter.close();
@@ -125,6 +144,14 @@ public class EndScreen extends JPanel implements ActionListener {
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write file");
         }
+    }
+
+    private void loadImage() {
+        String sep = System.getProperty("file.separator");
+        ferretImage = new ImageIcon(System.getProperty("user.dir") + sep
+                + "data" + sep + "pic.PNG");
+        imageAsLabel = new JLabel(ferretImage);
+        ferretPanel.add(imageAsLabel);
     }
 
 }

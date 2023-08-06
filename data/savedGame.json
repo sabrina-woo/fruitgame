@@ -1,54 +1,68 @@
 {
     "max enemies": 3,
-    "score": 1,
-    "basket fruit": [{
-        "y position": 435,
-        "x position": 411
-    }],
+    "score": 0,
+    "basket fruit": [
+        {
+            "y position": 166,
+            "x position": 365
+        },
+        {
+            "y position": 261,
+            "x position": 248
+        },
+        {
+            "y position": 265,
+            "x position": 388
+        },
+        {
+            "y position": 433,
+            "x position": 97
+        }
+    ],
     "screen y": 450,
     "screen x": 720,
     "falling fruit": [
         {
-            "y position": 416,
-            "x position": 171
+            "y position": 138,
+            "x position": 250
         },
         {
-            "y position": 400,
-            "x position": 53
+            "y position": 138,
+            "x position": 675
         },
         {
-            "y position": 400,
-            "x position": 247
+            "y position": 138,
+            "x position": 20
         },
         {
-            "y position": 400,
-            "x position": 135
+            "y position": 138,
+            "x position": 430
         },
         {
-            "y position": 400,
+            "y position": 138,
+            "x position": 100
+        },
+        {
+            "y position": 138,
             "x position": 73
-        },
-        {
-            "y position": 400,
-            "x position": 465
         }
     ],
     "max fruit": 6,
     "falling enemies": [
         {
-            "y position": 400,
-            "x position": 490
+            "y position": 138,
+            "x position": 310
         },
         {
-            "y position": 400,
-            "x position": 508
+            "y position": 138,
+            "x position": 142
         },
         {
-            "y position": 400,
-            "x position": 616
+            "y position": 138,
+            "x position": 196
         }
     ],
     "ended": false,
-    "basket x": 700,
+    "basket x": 250,
     "basket y": 435
 }

@@ -63,12 +63,24 @@ public class Game implements Writable {
 
     //MODIFIES: this
     //EFFECTS: creates one fruit at a random x position and a random y position
-    public Fruit createOneFruitRandom() {
+    public void createOneFruitRandom() {
         Random random = new Random();
         int posX = this.screenX;
-        Fruit fruit = new Fruit(random.nextInt(screenX + 1), random.nextInt(screenX + 1));
+        Fruit fruit = new Fruit(random.nextInt(screenX + 1), random.nextInt(screenY + 1));
 
-        return fruit;
+        this.getBasket().getFruitInBasket().add(fruit);
+    }
+
+    //MODIFIES: this
+    //EFFECTS: creates one fruit at a random x position and a random y position
+    public void removeTopHalf() {
+        for (int i = 0; i < this.getFruitInBasket().size(); i++) {
+            Fruit fruit = this.getFruitInBasket().get(i);
+            if (fruit.getY() < this.screenY / 2) {
+                this.getBasket().getFruitInBasket().remove(fruit);
+                i--;
+            }
+        }
     }
 
     //REQUIRES: maxNumberOfFallingFruit >= 0
@@ -186,6 +198,9 @@ public class Game implements Writable {
         if (size > 0) {
             this.getFruitInBasket().remove(random.nextInt(size));
         }
+
+
+
     }
 
     //EFFECTS: puts game information into JSON file

@@ -191,6 +191,12 @@ public class TestGame {
         testGame.handleEnemies();
         assertTrue(testGame.isEnded());
 
+        //Enemy has same Y but not same X
+        testGame.setBasketX(-14);
+        testGame.setBasketY(-15);
+        testGame.handleEnemies();
+        assertTrue(testGame.isEnded());
+
         //Enemy has same Y and same X
         testGame.setBasketX(-15);
         testGame.setBasketY(-15);
