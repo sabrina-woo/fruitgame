@@ -7,6 +7,8 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import javax.swing.*;
@@ -16,24 +18,43 @@ import model.Enemy;
 import model.Fruit;
 import model.Game;
 
+import persistance.JsonReader;
+import persistance.JsonWriter;
+
+import static com.sun.java.accessibility.util.AWTEventMonitor.removeActionListener;
 import static java.awt.Color.*;
 
 public class GamePanel extends JPanel implements ActionListener {
     private static final String GAME_OVER = "Game Over";
     private Game game;
+    private JButton save;
+    private JButton load;
+    private JButton no;
+    private FruitGame fruitGame;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+    private static final String JSON_STORE = "./data/savedGame.json";
+
 
     //Constructs a game panel
     //EFFECTS: c
-    public GamePanel(Game g) {
+    public GamePanel(Game g, FruitGame fruitGame) throws IOException {
         setPreferredSize(new Dimension(g.getX(), g.getY()));
         setBackground(Color.PINK);
         this.game = g;
+        this.fruitGame = fruitGame;
+        loadButton();
+        noLoadButton();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         drawGame(g);
+        revalidate();
+//        promptSaveButton();
     }
 
     private void drawGame(Graphics g) {
@@ -48,7 +69,7 @@ public class GamePanel extends JPanel implements ActionListener {
         g.setColor(new Color(255, 255, 255));
         g.setFont(new Font("Arial", 20, 20));
         FontMetrics fm = g.getFontMetrics();
-        centreString("Score: " + game.getScore(), g, fm, (game.getY() / 2) - 50);
+        centreString("Score: " + game.getScore(), g, fm, game.getY() / 9);
         g.setColor(WHITE);
     }
 
@@ -94,32 +115,64 @@ public class GamePanel extends JPanel implements ActionListener {
         g.setColor(Enemy.COLOR);
     }
 
-    private void gameOver(Graphics g) {
-        g.setColor(new Color(255, 255, 255));
-        g.setFont(new Font("Arial", 20, 50));
-        FontMetrics fm = g.getFontMetrics();
-        centreString(GAME_OVER, g, fm, game.getY() / 2);
-        g.setColor(WHITE);
-        saveButton();
-    }
-
     private void centreString(String str, Graphics g, FontMetrics fm, int posY) {
         int width = fm.stringWidth(str);
         g.drawString(str, (game.getX() - width) / 2, posY);
     }
 
-    private void saveButton() {
-        JButton btn = new JButton("Save");
-        btn.setActionCommand("saved");
-        btn.addActionListener(this);
-        add(btn);
+    private void loadButton() {
+        load = new JButton("Yes");
+        load.setActionCommand("load");
+        load.addActionListener(this);
+        add(load);
+    }
+
+    private void noLoadButton() {
+        no = new JButton("no");
+        no.setActionCommand("no");
+        no.addActionListener(this);
+        add(no);
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("saved")) {
-            game.setIsEnded(true);
+        if (e.getActionCommand().equals("load")) {
+            loadGame();
+            this.remove(load);
+            this.remove(no);
+            fruitGame.validateFruitGame();
+
+        }
+        if (e.getActionCommand().equals("no")) {
+            this.remove(no);
+            this.remove(load);
+            fruitGame.validateFruitGame();
         }
     }
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadGame() {
+        try {
+            this.game = jsonReader.read();
+            fruitGame.setGame(game);
+        } catch (IOException e) {
+            System.out.println("Unable to read file");
+        }
+    }
+
+    // EFFECTS: saves the workroom to file
+    public void saveGame() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(game);
+            jsonWriter.close();
+            System.out.println("Saved game to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write file");
+        }
+    }
+
+
 
 
 }

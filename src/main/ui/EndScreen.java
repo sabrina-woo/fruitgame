@@ -7,6 +7,7 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import javax.swing.*;
@@ -14,11 +15,18 @@ import javax.swing.*;
 import model.Fruit;
 import model.Game;
 
+import persistance.JsonReader;
+import persistance.JsonWriter;
+
 import static java.awt.Color.*;
 
 public class EndScreen extends JPanel implements ActionListener {
     private static final String GAME_OVER = "Game Over";
     private Game game;
+    private JButton save;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+    private static final String JSON_STORE = "./data/savedGame.json";
 
     //Constructs a game panel
     //EFFECTS: c
@@ -28,6 +36,7 @@ public class EndScreen extends JPanel implements ActionListener {
         this.game = g;
         addFruit();
         removeFruit();
+        saveButton();
     }
 
     @Override
@@ -94,7 +103,28 @@ public class EndScreen extends JPanel implements ActionListener {
         if (e.getActionCommand().equals("remove fruit")) {
             game.removeRandomFruit();
         }
+        if (e.getActionCommand().equals("save")) {
+            saveGame();
+        }
     }
 
+    private void saveButton() {
+        save = new JButton("Save");
+        save.setActionCommand("save");
+        save.addActionListener(this);
+        add(save);
+    }
+
+    // EFFECTS: saves the workroom to file
+    public void saveGame() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(game);
+            jsonWriter.close();
+            System.out.println("Saved game to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write file");
+        }
+    }
 
 }

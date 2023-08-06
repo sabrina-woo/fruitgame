@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.Timer;
@@ -22,22 +23,20 @@ public class FruitGame extends JFrame {
     private static final int INTERVAL = 5;
     private Game game;
     private GamePanel gp;
-    private SidePanel sp;
     private EndScreen es;
 //    private StartScreen ss;
 
     //Constructs main window
     // effects: sets up window in which Space Invaders game will be played
 
-    public FruitGame() {
+    public FruitGame() throws IOException {
         super("Fruit Game");
         int screenWidth = getWidthDimensions();
         int screenHeight = getHeightDimensions();
         setSize(getWidthDimensions(), getHeightDimensions());
 
         game = new Game(screenWidth, screenHeight);
-        gp = new GamePanel(game);
-//        sp = new SidePanel(game);
+        gp = new GamePanel(game, this);
         es = new EndScreen(game);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setUndecorated(false);
@@ -48,13 +47,13 @@ public class FruitGame extends JFrame {
 
     private void start() {
         add(gp);
-//        add(sp, BorderLayout.WEST); // BorderLayout.WEST)
         addKeyListener(new KeyHandler());
         pack();
         centreOnScreen();
         setVisible(true);
         addTimer();
     }
+
 
     private int getWidthDimensions() {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -78,12 +77,11 @@ public class FruitGame extends JFrame {
                 if (game.isEnded()) {
                     add(es);
                     remove(gp);
-//                    remove(sp);
+                    revalidate();
                     es.repaint();
                 } else {
                     gp.repaint();
                     game.update();
-//                    sp.update();
                 }
                 }
         });
@@ -98,13 +96,24 @@ public class FruitGame extends JFrame {
                 game.getBasket().move(-10);
             } else if (keyCode == KeyEvent.VK_RIGHT) {
                 game.getBasket().move(10);
+            } else if (keyCode == KeyEvent.VK_UP) {
+                gp.saveGame();
             } else {
                 game.getBasket().move(0);
             }
         }
     }
 
-    public static void main(String[] args) {
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
+    public void validateFruitGame() {
+        validate();
+    }
+
+
+    public static void main(String[] args) throws IOException {
         new FruitGame();
     }
 
