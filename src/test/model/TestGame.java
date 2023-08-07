@@ -177,6 +177,8 @@ public class TestGame {
     void testHandleEnemyHitsBasket() {
         //Enemy has same X but not same Y
         Enemy oneEnemy = new Enemy(-15, -15);
+
+
         List<Enemy> enemy = testGame.getEnemies();
         enemy.add(oneEnemy);
         testGame.setBasketX(-15);
@@ -203,6 +205,64 @@ public class TestGame {
         testGame.handleEnemies();
         assertTrue(testGame.isEnded());
     }
+
+    @Test
+    void testHandleEnemyHitsBasketLeftEdge() {
+        int leftEdge = game.getBasket().getX() - (Basket.SIZE_X / 2);
+        Enemy oneEnemy = new Enemy(leftEdge, -15);
+        List<Enemy> enemy = game.getEnemies();
+        enemy.add(oneEnemy);
+        game.setBasketY(-15);
+        game.handleEnemies();
+        assertTrue(game.isEnded());
+    }
+
+    @Test
+    void testHandleEnemyHitsBasketLeftEdgeTooFar() {
+        int leftSide = game.getBasket().getX() + (Basket.SIZE_X * 2);
+        Enemy oneEnemy = new Enemy(leftSide, -15);
+        List<Enemy> enemy = game.getEnemies();
+        enemy.add(oneEnemy);
+        game.setBasketY(-15);
+        game.handleEnemies();
+        assertFalse(game.isEnded());
+    }
+
+    @Test
+    void testHandleEnemyHitsBasketRightEdge() {
+        int rightEdge = game.getBasket().getX() + Basket.SIZE_X;
+        Enemy oneEnemy = new Enemy(rightEdge, -15);
+        List<Enemy> enemy = game.getEnemies();
+        enemy.add(oneEnemy);
+        game.setBasketY(-15);
+        game.handleEnemies();
+        assertTrue(game.isEnded());
+    }
+
+    @Test
+    void testHandleEnemyHitsBasketRightEdgeTooFar() {
+        int rightSide = game.getBasket().getX() + Basket.SIZE_X * 2;
+        Enemy oneEnemy = new Enemy(rightSide, -15);
+        List<Enemy> enemy = game.getEnemies();
+        enemy.add(oneEnemy);
+        game.setBasketY(-15);
+        game.handleEnemies();
+        assertFalse(game.isEnded());
+    }
+
+    @Test
+    void testHandleEnemyHitsBasketEdge() {
+        int rightEdge = game.getBasket().getX() + Basket.SIZE_X;
+        Enemy oneEnemy = new Enemy(rightEdge, -15);
+        List<Enemy> enemy = game.getEnemies();
+        enemy.add(oneEnemy);
+        game.setBasketY(-16);
+        assertFalse(game.isEnded());
+        game.setBasketY(-15);
+        game.handleEnemies();
+        assertTrue(game.isEnded());
+    }
+
 
     @Test
     void handleFoodOffScreen() {
