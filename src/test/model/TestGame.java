@@ -218,6 +218,17 @@ public class TestGame {
     }
 
     @Test
+    void testHandleEnemyNotHitBasketLeftEdge() {
+        int leftEdge = game.getBasket().getX() - (Basket.SIZE_X / 2);
+        Enemy oneEnemy = new Enemy(leftEdge - 1, -15);
+        List<Enemy> enemy = game.getEnemies();
+        enemy.add(oneEnemy);
+        game.setBasketY(-15);
+        game.handleEnemies();
+        assertFalse(game.isEnded());
+    }
+
+    @Test
     void testHandleEnemyHitsBasketLeftEdgeTooFar() {
         int leftSide = game.getBasket().getX() + (Basket.SIZE_X * 2);
         Enemy oneEnemy = new Enemy(leftSide, -15);
@@ -227,6 +238,8 @@ public class TestGame {
         game.handleEnemies();
         assertFalse(game.isEnded());
     }
+
+
 
     @Test
     void testHandleEnemyHitsBasketRightEdge() {
