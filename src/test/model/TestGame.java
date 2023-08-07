@@ -585,6 +585,18 @@ public class TestGame {
         assertEquals(1, game.getScore());
     }
 
+    @Test
+    void testRemoveRandomFruitNoFruit() {
+        List<Fruit> fruitInBasket = game.getFruitInBasket();
+
+        assertEquals(0, fruitInBasket.size());
+        assertEquals(0, game.getScore());
+
+        game.removeRandomFruit();
+        assertEquals(0, fruitInBasket.size());
+        assertEquals(0, game.getScore());
+    }
+
 
     @Test
     void testToJson() {

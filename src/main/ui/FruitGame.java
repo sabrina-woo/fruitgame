@@ -2,11 +2,6 @@ package ui;
 
 import model.Game;
 
-import javax.swing.*;
-import java.awt.*;
-import java.io.FileNotFoundException;
-
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -18,6 +13,9 @@ import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
+
+//Represents the main window in which the fruit game is played
+
 public class FruitGame extends JFrame {
 
     private static final int INTERVAL = 5;
@@ -25,11 +23,10 @@ public class FruitGame extends JFrame {
     private GamePanel gp;
     private EndScreen es;
 
-//    private StartScreen ss;
+
 
     //Constructs main window
     // effects: sets up window in which Space Invaders game will be played
-
     public FruitGame() throws IOException {
         super("Fruit Game");
         int screenWidth = getWidthDimensions();
@@ -45,6 +42,8 @@ public class FruitGame extends JFrame {
 
     }
 
+    //MODIFIES: this
+    //EFFECTS: adds GamePanel gp, adds KeyListener and Timer
     private void start() {
         add(gp);
         addKeyListener(new KeyHandler());
@@ -65,11 +64,16 @@ public class FruitGame extends JFrame {
         return (screen.height - getHeight()) / 2;
     }
 
+    //MODIFIES: this
+    //EFFECTS: centres the JPanels on screen
     private void centreOnScreen() {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation((screen.width - getWidth()) / 2, (screen.height - getHeight()) / 2);
     }
 
+    //MODIFIES: this
+    //EFFECTS: if game is ended, removes gp, adds es, revalidates and repaints
+    //otherwise, updates game and repaints gamepanel
     private void addTimer() {
         Timer t = new Timer(INTERVAL, new ActionListener() {
             @Override
@@ -89,6 +93,7 @@ public class FruitGame extends JFrame {
         t.start();
     }
 
+    //EFFECTS: moves the player in the corresponding arrow key direction
     private class KeyHandler extends KeyAdapter {
         @Override
         public void keyPressed(KeyEvent e) {
@@ -105,15 +110,17 @@ public class FruitGame extends JFrame {
         }
     }
 
-    public void setGame(Game game) {
-        this.game = game;
-    }
-
+    //MODIFIES: this
+    //EFFECTS: validates
     public void validateFruitGame() {
         validate();
     }
 
+    public void setGame(Game game) {
+        this.game = game;
+    }
 
+    //EFFECTS: calls FruitGame to construct the game
     public static void main(String[] args) throws IOException {
         new FruitGame();
     }

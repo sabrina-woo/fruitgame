@@ -37,8 +37,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
 
     //Constructs a game panel
-    //EFFECTS: c
-    public GamePanel(Game g, FruitGame fruitGame) throws IOException {
+    public GamePanel(Game g, FruitGame fruitGame) {
         setPreferredSize(new Dimension(g.getX(), g.getY()));
         setBackground(Color.PINK);
         this.game = g;
@@ -49,14 +48,17 @@ public class GamePanel extends JPanel implements ActionListener {
         jsonReader = new JsonReader(JSON_STORE);
     }
 
+    //MODIFIES: this
+    //EFFECTS: repaints the game
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         drawGame(g);
         revalidate();
-//        promptSaveButton();
     }
 
+    //MODIFIES: this
+    //EFFECTS: draws basket, fruit, enemies, caught fruit, and score
     private void drawGame(Graphics g) {
         drawBasket(g);
         drawFruit(g);
@@ -65,6 +67,8 @@ public class GamePanel extends JPanel implements ActionListener {
         getScore(g);
     }
 
+    //MODIFIES: this
+    //EFFECTS: renders player's score
     private void getScore(Graphics g) {
         g.setColor(new Color(255, 255, 255));
         g.setFont(new Font("Arial", 20, 20));
@@ -73,6 +77,8 @@ public class GamePanel extends JPanel implements ActionListener {
         g.setColor(WHITE);
     }
 
+    //MODIFIES: this
+    //EFFECTS: renders player's basket
     private void drawBasket(Graphics g) {
         Basket basket = game.getBasket();
         g.setColor(Basket.COLOR);
@@ -81,6 +87,7 @@ public class GamePanel extends JPanel implements ActionListener {
         g.setColor(Basket.COLOR);
     }
 
+    //MODIFIES: this
     //EFFECTS: renders each fruit in a list of fruit
     private void drawFruit(Graphics g) {
         List<Fruit> fruit = game.getFruit();
@@ -89,6 +96,8 @@ public class GamePanel extends JPanel implements ActionListener {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: renders fruit the player has collected
     private void drawBasketFruit(Graphics g) {
         List<Fruit> fruit = game.getFruitInBasket();
         for (Fruit currentFruit : fruit) {
@@ -96,12 +105,16 @@ public class GamePanel extends JPanel implements ActionListener {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: renders a single fruit
     private void drawEachFruit(Graphics g, Fruit fruit) {
         g.setColor(Fruit.COLOR);
         g.fillOval(fruit.getX() - Fruit.SIZE_X / 2, fruit.getY() - Fruit.SIZE_Y / 2, Fruit.SIZE_X, Fruit.SIZE_Y);
         g.setColor(Fruit.COLOR);
     }
 
+    //MODIFIES: this
+    //EFFECTS: renders game enemies
     private void drawEnemies(Graphics g) {
         List<Enemy> enemy = game.getEnemies();
         for (Enemy currentEnemy : enemy) {
@@ -109,17 +122,23 @@ public class GamePanel extends JPanel implements ActionListener {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: renders a single enemy
     private void drawEachEnemy(Graphics g, Enemy enemy) {
         g.setColor(Enemy.COLOR);
         g.fillRect(enemy.getX() - Enemy.SIZE_X / 2, enemy.getY() - Enemy.SIZE_Y / 2, Enemy.SIZE_X, Enemy.SIZE_Y);
         g.setColor(Enemy.COLOR);
     }
 
+    //MODIFIES: this
+    //EFFECTS: centres the given Graphic
     private void centreString(String str, Graphics g, FontMetrics fm, int posY) {
         int width = fm.stringWidth(str);
         g.drawString(str, (game.getX() - width) / 2, posY);
     }
 
+    //MODIFIES: this
+    //EFFECTS: adds a load button
     private void loadButton() {
         load = new JButton("Yes");
         load.setActionCommand("load");
@@ -127,6 +146,8 @@ public class GamePanel extends JPanel implements ActionListener {
         add(load);
     }
 
+    //MODIFIES: this
+    //EFFECTS: adds a no button
     private void noLoadButton() {
         no = new JButton("no");
         no.setActionCommand("no");
@@ -134,6 +155,8 @@ public class GamePanel extends JPanel implements ActionListener {
         add(no);
     }
 
+    //MODIFIES: this
+    //EFFECTS: takes in the user's button press and removes load and no button
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("load")) {
             loadGame();
@@ -160,6 +183,7 @@ public class GamePanel extends JPanel implements ActionListener {
         }
     }
 
+    //MODIFIES: this
     // EFFECTS: saves the workroom to file
     public void saveGame() {
         try {
@@ -171,8 +195,5 @@ public class GamePanel extends JPanel implements ActionListener {
             fruitGame.setGame(game);
         }
     }
-
-
-
 
 }

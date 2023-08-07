@@ -33,6 +33,17 @@ would allow for a wide range of flexibility/**creative liberty in rendering the 
 - As a user, I want the option to save my game.
 - As a user, I want to option to load a saved game.
 
+# Instructions for Grader
+
+- You can generate the first required action related to adding Xs to a Y by ending the game, then selecting
+the add fruit or remove fruit buttons
+- You can generate the second required action related to adding Xs to a Y by ending the game, then selecting the 
+remove top half button (which will filter out the fruit from the top half of the screen)
+- You can locate my visual component by ending the game (component will pop up automatically)
+- You can save the state of my application by pressing the top arrow key anytime throughout the game, or by selecting 
+the save button when the game over screen pops up (when saved this way, if the game is reloaded, game is set to not over)
+- You can reload the state of my application by selecting the yes when prompted when starting the application.
+
 
 
 

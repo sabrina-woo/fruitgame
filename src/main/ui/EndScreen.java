@@ -26,8 +26,7 @@ public class EndScreen extends JPanel implements ActionListener {
 
     private static final String JSON_STORE = "./data/savedGame.json";
 
-    //Constructs a game panel
-    //EFFECTS: c
+    //Constructs an ending screen
     public EndScreen(Game g) {
         setPreferredSize(new Dimension(g.getX(), g.getY()));
         setBackground(Color.PINK);
@@ -47,6 +46,8 @@ public class EndScreen extends JPanel implements ActionListener {
         saveButton();
     }
 
+    //MODIFIES: this
+    //EFFECTS: repaints components
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -56,6 +57,8 @@ public class EndScreen extends JPanel implements ActionListener {
         getScore(g);
     }
 
+    //MODIFIES: this
+    //EFFECTS: renders the fruit caught by the player
     private void drawBasketFruit(Graphics g) {
         List<Fruit> fruit = game.getFruitInBasket();
         for (Fruit currentFruit : fruit) {
@@ -63,12 +66,16 @@ public class EndScreen extends JPanel implements ActionListener {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: renders a single fruit
     private void drawEachFruit(Graphics g, Fruit fruit) {
         g.setColor(Fruit.COLOR);
         g.fillOval(fruit.getX() - Fruit.SIZE_X / 2, fruit.getY() - Fruit.SIZE_Y / 2, Fruit.SIZE_X, Fruit.SIZE_Y);
         g.setColor(Fruit.COLOR);
     }
 
+    //MODIFIES: this
+    //EFFECTS: renders the game over text
     private void getGameOverText(Graphics g) {
         g.setColor(new Color(255, 255, 255));
         g.setFont(new Font("Arial", 20, 50));
@@ -77,6 +84,8 @@ public class EndScreen extends JPanel implements ActionListener {
         g.setColor(WHITE);
     }
 
+    //MODIFIES: this
+    //EFFECTS: renders the player's score
     private void getScore(Graphics g) {
         g.setColor(new Color(255, 255, 255));
         g.setFont(new Font("Arial", 20, 20));
@@ -85,11 +94,15 @@ public class EndScreen extends JPanel implements ActionListener {
         g.setColor(WHITE);
     }
 
+    //MODIFIES: this
+    //EFFECTS: centres the given Graphic
     private void centreString(String str, Graphics g, FontMetrics fm, int posY) {
         int width = fm.stringWidth(str);
         g.drawString(str, (game.getX() - width) / 2, posY);
     }
 
+    //MODIFIES: this
+    //EFFECTS: creates an addFruit button
     private void addFruit() {
         JButton btn = new JButton("Add fruit");
         btn.setActionCommand("add fruit");
@@ -97,6 +110,8 @@ public class EndScreen extends JPanel implements ActionListener {
         add(btn);
     }
 
+    //MODIFIES: this
+    //EFFECTS: creates a removeFruit button
     private void removeFruit() {
         JButton btn = new JButton("Remove fruit");
         btn.setActionCommand("remove fruit");
@@ -104,6 +119,8 @@ public class EndScreen extends JPanel implements ActionListener {
         add(btn);
     }
 
+    //MODIFIES: this
+    //EFFECTS: creates a button that removes all fruit on the top half of the screen
     private void removeFruitTopHalf() {
         JButton btn = new JButton("Remove fruit top Screen");
         btn.setActionCommand("remove fruit top half of screen");
@@ -111,6 +128,8 @@ public class EndScreen extends JPanel implements ActionListener {
         add(btn);
     }
 
+    //MODIFIES: this
+    //EFFECTS: takes in button input
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("add fruit")) {
             game.addOneFruitRandom();
@@ -126,6 +145,8 @@ public class EndScreen extends JPanel implements ActionListener {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: creates a save button
     private void saveButton() {
         save = new JButton("Save");
         save.setActionCommand("save");
@@ -133,6 +154,7 @@ public class EndScreen extends JPanel implements ActionListener {
         add(save);
     }
 
+    //MODIFIES: this
     // EFFECTS: saves the workroom to file
     public void saveGame() {
         try {
