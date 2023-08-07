@@ -240,7 +240,6 @@ public class TestGame {
     }
 
 
-
     @Test
     void testHandleEnemyHitsBasketRightEdge() {
         int rightEdge = game.getBasket().getX() + Basket.SIZE_X;
@@ -409,6 +408,99 @@ public class TestGame {
         assertEquals(0, fruit.size());
         assertEquals(1, fruitInBasket.size());
         assertEquals(1, testGame.getScore());
+    }
+
+    @Test
+    void testHandleFoodHitsBasketLeftEdge() {
+        int leftEdge = game.getBasket().getX() - (Basket.SIZE_X / 2);
+        Fruit oneFruit = new Fruit(leftEdge, -15);
+        List<Fruit> fruit = game.getFruit();
+        List<Fruit> fruitInBasket = game.getFruitInBasket();
+        fruit.add(oneFruit);
+        game.setBasketY(-15);
+        game.handleFood();
+        assertEquals(0, fruit.size());
+        assertEquals(1, fruitInBasket.size());
+        assertEquals(1, game.getScore());
+    }
+
+
+    @Test
+    void testHandleFoodNotHitBasketLeftEdge() {
+        int leftEdge = game.getBasket().getX() - (Basket.SIZE_X / 2);
+        Fruit oneFruit = new Fruit(leftEdge - 1, -15);
+        List<Fruit> fruit = game.getFruit();
+        List<Fruit> fruitInBasket = game.getFruitInBasket();
+        fruit.add(oneFruit);
+        game.setBasketY(-15);
+        game.handleFood();
+        assertEquals(1, fruit.size());
+        assertEquals(0, fruitInBasket.size());
+        assertEquals(0, game.getScore());
+    }
+
+
+    @Test
+    void testHandleFoodHitsBasketLeftEdgeTooFar() {
+        int leftSide = game.getBasket().getX() + (Basket.SIZE_X * 2);
+        Fruit oneFruit = new Fruit(leftSide, -15);
+        List<Fruit> fruit = game.getFruit();
+        List<Fruit> fruitInBasket = game.getFruitInBasket();
+        fruit.add(oneFruit);
+
+        game.setBasketY(-15);
+        game.handleFood();
+        assertEquals(1, fruit.size());
+        assertEquals(0, fruitInBasket.size());
+        assertEquals(0, game.getScore());
+    }
+
+
+    @Test
+    void testHandleFoodHitsBasketRightEdge() {
+        int rightEdge = game.getBasket().getX() + Basket.SIZE_X;
+        Fruit oneFruit = new Fruit(rightEdge, -15);
+        List<Fruit> fruit = game.getFruit();
+        List<Fruit> fruitInBasket = game.getFruitInBasket();
+        fruit.add(oneFruit);
+
+        game.setBasketY(-15);
+        game.handleFood();
+        assertEquals(0, fruit.size());
+        assertEquals(1, fruitInBasket.size());
+        assertEquals(1, game.getScore());
+    }
+
+    @Test
+    void testHandleFoodHitsBasketRightEdgeTooFar() {
+        int rightSide = game.getBasket().getX() + Basket.SIZE_X * 2;
+
+        Fruit oneFruit = new Fruit(rightSide, -15);
+        List<Fruit> fruit = game.getFruit();
+        List<Fruit> fruitInBasket = game.getFruitInBasket();
+        fruit.add(oneFruit);
+
+        game.setBasketY(-15);
+        game.handleFood();
+        assertEquals(1, fruit.size());
+        assertEquals(0, fruitInBasket.size());
+        assertEquals(0, game.getScore());
+    }
+
+    @Test
+    void testHandleFoodHitsBasketEdge() {
+        int rightEdge = game.getBasket().getX() + Basket.SIZE_X;
+
+        Fruit oneFruit = new Fruit(rightEdge, -15);
+        List<Fruit> fruit = game.getFruit();
+        List<Fruit> fruitInBasket = game.getFruitInBasket();
+        fruit.add(oneFruit);
+
+        game.setBasketY(-15);
+        game.handleFood();
+        assertEquals(0, fruit.size());
+        assertEquals(1, fruitInBasket.size());
+        assertEquals(1, game.getScore());
     }
 
     @Test
