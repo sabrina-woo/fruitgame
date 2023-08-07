@@ -63,7 +63,7 @@ public class Game implements Writable {
 
     //MODIFIES: this
     //EFFECTS: creates one fruit at a random x position and a random y position
-    public void createOneFruitRandom() {
+    public void addOneFruitRandom() {
         Random random = new Random();
         int posX = this.screenX;
         Fruit fruit = new Fruit(random.nextInt(screenX + 1), random.nextInt(screenY + 1));

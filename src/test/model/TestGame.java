@@ -539,6 +539,54 @@ public class TestGame {
     }
 
     @Test
+    void testAddOneFruitRandom() {
+        List<Fruit> fruit = testGame.getFruitInBasket();
+        assertEquals(0, fruit.size());
+
+        //Creates one fruit
+        testGame.addOneFruitRandom();
+        assertEquals(1, fruit.size());
+    }
+
+    @Test
+    void testRemoveTopHalf() {
+        int halfScreen = game.getY() / 2;
+
+        Fruit keepFruit = new Fruit(15, halfScreen);
+        Fruit removeFruit = new Fruit(15, halfScreen - 1);
+
+        List<Fruit> fruitInBasket = game.getFruitInBasket();
+        fruitInBasket.add(keepFruit);
+        fruitInBasket.add(removeFruit);
+
+        assertEquals(2, fruitInBasket.size());
+        assertEquals(2, game.getScore());
+
+        game.removeTopHalf();
+        assertEquals(1, fruitInBasket.size());
+        assertEquals(1, game.getScore());
+    }
+
+    @Test
+    void testRemoveRandomFruit() {
+
+        Fruit fruitOne = new Fruit(15, 15);
+        Fruit fruitTwo = new Fruit(15, 15);
+
+        List<Fruit> fruitInBasket = game.getFruitInBasket();
+        fruitInBasket.add(fruitOne);
+        fruitInBasket.add(fruitOne);
+
+        assertEquals(2, fruitInBasket.size());
+        assertEquals(2, game.getScore());
+
+        game.removeRandomFruit();
+        assertEquals(1, fruitInBasket.size());
+        assertEquals(1, game.getScore());
+    }
+
+
+    @Test
     void testToJson() {
         JSONObject jsonObject = testGame.toJson();
 

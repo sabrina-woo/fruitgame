@@ -113,7 +113,7 @@ public class EndScreen extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("add fruit")) {
-            game.createOneFruitRandom();
+            game.addOneFruitRandom();
         }
         if (e.getActionCommand().equals("remove fruit")) {
             game.removeRandomFruit();
