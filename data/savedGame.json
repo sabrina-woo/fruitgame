@@ -3,66 +3,154 @@
     "score": 0,
     "basket fruit": [
         {
-            "y position": 166,
-            "x position": 365
+            "y position": 366,
+            "x position": 474
         },
         {
-            "y position": 261,
-            "x position": 248
+            "y position": 371,
+            "x position": 337
         },
         {
-            "y position": 265,
-            "x position": 388
+            "y position": 356,
+            "x position": 447
         },
         {
-            "y position": 433,
-            "x position": 97
+            "y position": 376,
+            "x position": 404
+        },
+        {
+            "y position": 317,
+            "x position": 619
+        },
+        {
+            "y position": 378,
+            "x position": 45
+        },
+        {
+            "y position": 355,
+            "x position": 442
+        },
+        {
+            "y position": 389,
+            "x position": 41
+        },
+        {
+            "y position": 386,
+            "x position": 498
+        },
+        {
+            "y position": 269,
+            "x position": 579
+        },
+        {
+            "y position": 370,
+            "x position": 372
+        },
+        {
+            "y position": 231,
+            "x position": 577
+        },
+        {
+            "y position": 382,
+            "x position": 433
+        },
+        {
+            "y position": 408,
+            "x position": 206
+        },
+        {
+            "y position": 415,
+            "x position": 341
+        },
+        {
+            "y position": 251,
+            "x position": 695
+        },
+        {
+            "y position": 332,
+            "x position": 539
+        },
+        {
+            "y position": 395,
+            "x position": 214
+        },
+        {
+            "y position": 359,
+            "x position": 88
+        },
+        {
+            "y position": 341,
+            "x position": 3
+        },
+        {
+            "y position": 326,
+            "x position": 101
+        },
+        {
+            "y position": 312,
+            "x position": 634
+        },
+        {
+            "y position": 385,
+            "x position": 354
+        },
+        {
+            "y position": 313,
+            "x position": 281
+        },
+        {
+            "y position": 337,
+            "x position": 363
+        },
+        {
+            "y position": 396,
+            "x position": 440
         }
     ],
     "screen y": 450,
     "screen x": 720,
     "falling fruit": [
         {
-            "y position": 138,
-            "x position": 250
+            "y position": 435,
+            "x position": 362
         },
         {
-            "y position": 138,
-            "x position": 675
+            "y position": 435,
+            "x position": 465
         },
         {
-            "y position": 138,
-            "x position": 20
+            "y position": 435,
+            "x position": 81
         },
         {
-            "y position": 138,
-            "x position": 430
+            "y position": 435,
+            "x position": 110
         },
         {
-            "y position": 138,
-            "x position": 100
+            "y position": 435,
+            "x position": 42
         },
         {
-            "y position": 138,
-            "x position": 73
+            "y position": 435,
+            "x position": 163
         }
     ],
     "max fruit": 6,
     "falling enemies": [
         {
-            "y position": 138,
-            "x position": 310
+            "y position": 435,
+            "x position": 295
         },
         {
-            "y position": 138,
-            "x position": 142
+            "y position": 435,
+            "x position": 705
         },
         {
-            "y position": 138,
-            "x position": 196
+            "y position": 435,
+            "x position": 410
         }
     ],
     "ended": false,
-    "basket x": 250,
+    "basket x": 300,
     "basket y": 435
 }

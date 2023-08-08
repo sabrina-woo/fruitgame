@@ -27,7 +27,6 @@ import static java.awt.Color.*;
 public class GamePanel extends JPanel implements ActionListener {
     private static final String GAME_OVER = "Game Over";
     private Game game;
-    private JButton save;
     private JButton load;
     private JButton no;
     private FruitGame fruitGame;

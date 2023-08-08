@@ -1,9 +1,6 @@
 package persistance;
 
-import model.Game;
-import model.Fruit;
-import model.Enemy;
-import model.Basket;
+import model.*;
 
 
 import java.io.IOException;

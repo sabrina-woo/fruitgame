@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -25,6 +27,7 @@ public class Game implements Writable {
     private int screenX;
     private int screenY;
     public static final int TICKS = 20;
+    private EventLog eventLog;
 
     //Constructs a game
     //EFFECTS: creates a game with an empty list of fruit and enemies, and the score starting at zero
@@ -36,6 +39,7 @@ public class Game implements Writable {
         this.fallingEnemies = new ArrayList<>();
         this.score = 0;
         this.ended = false;
+        this.eventLog = EventLog.getInstance();
     }
 
     //REQUIRES: TICKS >= 1
@@ -79,6 +83,7 @@ public class Game implements Writable {
             if (fruit.getY() < this.screenY / 2) {
                 this.getBasket().getFruitInBasket().remove(fruit);
                 i--;
+                eventLog.logEvent(new Event("Fruit on top half of screen removed"));
             }
         }
     }
@@ -92,6 +97,7 @@ public class Game implements Writable {
         for (int i = 0; i < numberOfFruitsToGenerate; i++) {
             Fruit fruit = createOneFruit();
             fallingFruit.add(fruit);
+            eventLog.logEvent(new Event("Fruit has been created"));
         }
     }
 
@@ -100,6 +106,7 @@ public class Game implements Writable {
         Random random = new Random();
         int posY = this.screenX;
         Enemy enemy = new Enemy(random.nextInt(screenX + 1), 1);
+        eventLog.logEvent(new Event("Enemy has been created"));
         return enemy;
     }
 
@@ -123,6 +130,7 @@ public class Game implements Writable {
             if (fruit.getY() > this.screenY) {
                 fallingFruit.remove(fruit);
                 i--;
+                eventLog.logEvent(new Event("Fruit off the screen was removed"));
             }
 
             boolean leftBasketEdge =  fruit.getX() >= basket.getX() - (Basket.SIZE_X / 2);
@@ -134,6 +142,7 @@ public class Game implements Writable {
                 this.basket.addFruitInBasket(fruit);
                 this.score++;
                 i--;
+                eventLog.logEvent(new Event("Fruit has been added to basket"));
             }
         }
     }
@@ -146,6 +155,7 @@ public class Game implements Writable {
             if (enemy.getY() > this.screenY) {
                 fallingEnemies.remove(enemy);
                 i--;
+                eventLog.logEvent(new Event("Enemy has been removed from the screen"));
             }
 
             boolean leftBasketEdge =  enemy.getX() >= basket.getX() - (Basket.SIZE_X / 2);
@@ -198,9 +208,6 @@ public class Game implements Writable {
         if (size > 0) {
             this.getFruitInBasket().remove(random.nextInt(size));
         }
-
-
-
     }
 
     //EFFECTS: puts game information into JSON file

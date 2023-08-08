@@ -1,13 +1,12 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.Game;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.io.IOException;
 
 import javax.swing.JFrame;
@@ -16,12 +15,13 @@ import javax.swing.Timer;
 
 //Represents the main window in which the fruit game is played
 
-public class FruitGame extends JFrame {
+public class FruitGame extends JFrame implements WindowListener {
 
     private static final int INTERVAL = 5;
     private Game game;
     private GamePanel gp;
     private EndScreen es;
+    EventLog eventLog;
 
 
 
@@ -33,10 +33,13 @@ public class FruitGame extends JFrame {
         int screenHeight = getHeightDimensions();
         setSize(getWidthDimensions(), getHeightDimensions());
 
+        eventLog = EventLog.getInstance();
+
         game = new Game(screenWidth, screenHeight);
         gp = new GamePanel(game, this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setUndecorated(false);
+
 
         start();
 
@@ -120,10 +123,50 @@ public class FruitGame extends JFrame {
         this.game = game;
     }
 
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        for (Event event : eventLog) {
+            System.out.println(event);
+        }
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        for (Event event : eventLog) {
+            System.out.println(event);
+        }
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+
+    }
+
     //EFFECTS: calls FruitGame to construct the game
     public static void main(String[] args) throws IOException {
         new FruitGame();
     }
+
 
 }
 
