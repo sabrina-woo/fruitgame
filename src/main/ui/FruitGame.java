@@ -164,6 +164,12 @@ public class FruitGame extends JFrame implements WindowListener {
         }
     }
 
+//    public void printLog(EventLog el) {
+//        for (Event next : el) {
+//            System.out.println(next.toString());
+//        }
+//    }
+
     //EFFECTS: calls FruitGame to construct the game
     public static void main(String[] args) throws IOException {
         new FruitGame();
