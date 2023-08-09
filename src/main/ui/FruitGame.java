@@ -40,7 +40,6 @@ public class FruitGame extends JFrame implements WindowListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setUndecorated(false);
 
-
         start();
 
     }
@@ -131,14 +130,15 @@ public class FruitGame extends JFrame implements WindowListener {
     @Override
     public void windowClosing(WindowEvent e) {
         for (Event event : eventLog) {
-            System.out.println(event);
+            System.out.println(event.toString());
         }
     }
+
 
     @Override
     public void windowClosed(WindowEvent e) {
         for (Event event : eventLog) {
-            System.out.println(event);
+            System.out.println(event.toString());
         }
     }
 
@@ -159,7 +159,9 @@ public class FruitGame extends JFrame implements WindowListener {
 
     @Override
     public void windowDeactivated(WindowEvent e) {
-
+        for (Event event : eventLog) {
+            System.out.println(event.toString());
+        }
     }
 
     //EFFECTS: calls FruitGame to construct the game
