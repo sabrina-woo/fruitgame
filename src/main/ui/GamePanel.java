@@ -41,8 +41,8 @@ public class GamePanel extends JPanel implements ActionListener {
         setBackground(Color.PINK);
         this.game = g;
         this.fruitGame = fruitGame;
-//        loadButton();
-//        noLoadButton();
+        loadButton();
+        noLoadButton();
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
     }

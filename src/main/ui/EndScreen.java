@@ -175,5 +175,4 @@ public class EndScreen extends JPanel implements ActionListener {
         imageAsLabel = new JLabel(ferretImage);
         ferretPanel.add(imageAsLabel);
     }
-
 }

@@ -1,51 +1,316 @@
 {
     "max enemies": 3,
-    "score": 0,
-    "basket fruit": [],
+    "score": 4,
+    "basket fruit": [
+        {
+            "y position": 435,
+            "x position": 252
+        },
+        {
+            "y position": 435,
+            "x position": 265
+        },
+        {
+            "y position": 435,
+            "x position": 330
+        },
+        {
+            "y position": 435,
+            "x position": 302
+        },
+        {
+            "y position": 384,
+            "x position": 380
+        },
+        {
+            "y position": 306,
+            "x position": 633
+        },
+        {
+            "y position": 277,
+            "x position": 528
+        },
+        {
+            "y position": 294,
+            "x position": 521
+        },
+        {
+            "y position": 288,
+            "x position": 240
+        },
+        {
+            "y position": 388,
+            "x position": 588
+        },
+        {
+            "y position": 380,
+            "x position": 236
+        },
+        {
+            "y position": 319,
+            "x position": 162
+        },
+        {
+            "y position": 303,
+            "x position": 634
+        },
+        {
+            "y position": 229,
+            "x position": 74
+        },
+        {
+            "y position": 426,
+            "x position": 463
+        },
+        {
+            "y position": 280,
+            "x position": 697
+        },
+        {
+            "y position": 319,
+            "x position": 229
+        },
+        {
+            "y position": 337,
+            "x position": 584
+        },
+        {
+            "y position": 305,
+            "x position": 470
+        },
+        {
+            "y position": 402,
+            "x position": 576
+        },
+        {
+            "y position": 405,
+            "x position": 417
+        },
+        {
+            "y position": 324,
+            "x position": 186
+        },
+        {
+            "y position": 271,
+            "x position": 238
+        },
+        {
+            "y position": 333,
+            "x position": 224
+        },
+        {
+            "y position": 237,
+            "x position": 324
+        },
+        {
+            "y position": 381,
+            "x position": 529
+        },
+        {
+            "y position": 299,
+            "x position": 331
+        },
+        {
+            "y position": 248,
+            "x position": 43
+        },
+        {
+            "y position": 247,
+            "x position": 217
+        },
+        {
+            "y position": 363,
+            "x position": 537
+        },
+        {
+            "y position": 357,
+            "x position": 173
+        },
+        {
+            "y position": 292,
+            "x position": 362
+        },
+        {
+            "y position": 268,
+            "x position": 80
+        },
+        {
+            "y position": 53,
+            "x position": 137
+        },
+        {
+            "y position": 346,
+            "x position": 252
+        },
+        {
+            "y position": 147,
+            "x position": 502
+        },
+        {
+            "y position": 49,
+            "x position": 354
+        },
+        {
+            "y position": 46,
+            "x position": 678
+        },
+        {
+            "y position": 73,
+            "x position": 94
+        },
+        {
+            "y position": 401,
+            "x position": 686
+        },
+        {
+            "y position": 164,
+            "x position": 354
+        },
+        {
+            "y position": 132,
+            "x position": 44
+        },
+        {
+            "y position": 117,
+            "x position": 108
+        },
+        {
+            "y position": 229,
+            "x position": 41
+        },
+        {
+            "y position": 28,
+            "x position": 515
+        },
+        {
+            "y position": 154,
+            "x position": 173
+        },
+        {
+            "y position": 288,
+            "x position": 533
+        },
+        {
+            "y position": 11,
+            "x position": 391
+        },
+        {
+            "y position": 388,
+            "x position": 714
+        },
+        {
+            "y position": 175,
+            "x position": 496
+        },
+        {
+            "y position": 110,
+            "x position": 529
+        },
+        {
+            "y position": 266,
+            "x position": 402
+        },
+        {
+            "y position": 82,
+            "x position": 76
+        },
+        {
+            "y position": 335,
+            "x position": 175
+        },
+        {
+            "y position": 70,
+            "x position": 286
+        },
+        {
+            "y position": 145,
+            "x position": 31
+        },
+        {
+            "y position": 111,
+            "x position": 163
+        },
+        {
+            "y position": 112,
+            "x position": 247
+        },
+        {
+            "y position": 83,
+            "x position": 590
+        },
+        {
+            "y position": 427,
+            "x position": 504
+        },
+        {
+            "y position": 353,
+            "x position": 287
+        },
+        {
+            "y position": 338,
+            "x position": 280
+        },
+        {
+            "y position": 371,
+            "x position": 273
+        },
+        {
+            "y position": 313,
+            "x position": 436
+        },
+        {
+            "y position": 366,
+            "x position": 471
+        },
+        {
+            "y position": 410,
+            "x position": 206
+        },
+        {
+            "y position": 13,
+            "x position": 84
+        },
+        {
+            "y position": 414,
+            "x position": 508
+        }
+    ],
     "screen y": 450,
     "screen x": 720,
     "falling fruit": [
         {
-            "y position": 355,
-            "x position": 130
+            "y position": 435,
+            "x position": 252
         },
         {
-            "y position": 355,
-            "x position": 507
+            "y position": 435,
+            "x position": 302
         },
         {
-            "y position": 355,
-            "x position": 39
+            "y position": 435,
+            "x position": 409
         },
         {
-            "y position": 355,
-            "x position": 264
-        },
-        {
-            "y position": 355,
-            "x position": 519
-        },
-        {
-            "y position": 355,
-            "x position": 413
+            "y position": 16,
+            "x position": 219
         }
     ],
     "max fruit": 6,
     "falling enemies": [
         {
-            "y position": 355,
-            "x position": 315
+            "y position": 435,
+            "x position": 396
         },
         {
-            "y position": 355,
-            "x position": 394
+            "y position": 435,
+            "x position": 505
         },
         {
-            "y position": 355,
-            "x position": 700
+            "y position": 435,
+            "x position": 436
         }
     ],
     "ended": false,
-    "basket x": 360,
+    "basket x": 440,
     "basket y": 435
 }

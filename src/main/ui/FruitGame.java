@@ -37,7 +37,6 @@ public class FruitGame extends JFrame implements WindowListener {
 
         game = new Game(screenWidth, screenHeight);
         gp = new GamePanel(game, this);
-//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addWindowListener(this);
 
@@ -137,7 +136,6 @@ public class FruitGame extends JFrame implements WindowListener {
 
     @Override
     public void windowClosed(WindowEvent e) {
-//        printLog(EventLog.getInstance());
     }
 
     public void printLog(EventLog el) {
@@ -164,14 +162,10 @@ public class FruitGame extends JFrame implements WindowListener {
     public void windowDeactivated(WindowEvent e) {
     }
 
-
-
     //EFFECTS: calls FruitGame to construct the game
     public static void main(String[] args) throws IOException {
         new FruitGame();
     }
-
-
 }
 
 
